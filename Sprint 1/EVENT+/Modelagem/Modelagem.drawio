@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-08-10T20:02:46.472Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="4MrIrrpROSuit6n7Tcz4" version="21.6.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-08-11T19:27:53.184Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="63hF8VHlk85DzEqD8vx3" version="21.6.8" type="device">
   <diagram name="Página-1" id="Viu8Mivhx7TDQQlrX1ls">
-    <mxGraphModel dx="1050" dy="542" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1235" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -544,9 +544,6 @@
               <mxPoint x="460" y="1005" />
             </Array>
           </mxGeometry>
-        </mxCell>
-        <mxCell id="4-opEgHnKSxfqt2-WgJ5-1" value="FISICO" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="30" y="1350" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
