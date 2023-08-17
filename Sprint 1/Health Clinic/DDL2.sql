@@ -1,6 +1,4 @@
-Create DataBase HealthClinic
-
---===============================================================================
+CREATE DATABASE Health_Clinic_Miguel
 
 --DDL
 
@@ -22,7 +20,7 @@ CREATE TABLE Clinica
 	IdClinica INT PRIMARY KEY IDENTITY,
 	NomeFantasia VARCHAR(10) NOT NULL,
 	Endereco VARCHAR(200) NOT NULL,
-	CNPJ CHAR(14) UNIQUE NOT NULL
+	CNPJ CHAR(50) UNIQUE NOT NULL
 )
 
 --=========================================================================================
@@ -32,8 +30,10 @@ CREATE TABLE Usuario
 (
 	IdUsuario INT PRIMARY KEY IDENTITY, 
 	IdTipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario(IdTipoUsuario) NOT NULL,
+	Nome VARCHAR(50) NOT NULL,
 	Email VARCHAR(30)NOT NULL UNIQUE,
-	Senha VARCHAR(20) NOT NULL UNIQUE
+	Senha VARCHAR(20) NOT NULL UNIQUE,
+	DataDeNascimento DATE NOT NULL
 )
 
 CREATE TABLE Medico
@@ -41,7 +41,6 @@ CREATE TABLE Medico
 	IdMedico INT PRIMARY KEY IDENTITY,
 	IdUsuario INT FOREIGN KEY REFERENCES Usuario(IdUsuario) NOT NULL,
 	IdEspecialidade INT FOREIGN KEY REFERENCES Especialidade(IdEspecialidade) NOT NULL,
-	Nome VARCHAR(30) NOT NULL,
 	CRM VARCHAR(13) NOT NULL UNIQUE
 )
 
@@ -49,7 +48,6 @@ CREATE TABLE Paciente
 (
 	IdPaciente INT PRIMARY KEY IDENTITY,
 	IdUsuario INT FOREIGN KEY REFERENCES Usuario(IdUsuario) NOT NULL,
-	Nome VARCHAR(30) NOT NULL,
 	CPF VARCHAR(11) NOT NULL UNIQUE
 )
 
