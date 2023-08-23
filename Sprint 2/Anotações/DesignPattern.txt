@@ -1,0 +1,7 @@
+Domains: definição da classe - propriedades
+
+Controllers: metodos controladores - autenticação/autorização
+
+Interfaces: definição dos médicos obrigatórios 
+
+Repositores: implementação dos métodos (Regras de negócio)

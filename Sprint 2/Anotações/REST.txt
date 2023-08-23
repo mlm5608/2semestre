@@ -1,0 +1,5 @@
+Conjunto de regras padrão
+
+JSON: padrão de contrução de uma request e response
+
+RestFull: Implementação de todas as regras do padrão REST.

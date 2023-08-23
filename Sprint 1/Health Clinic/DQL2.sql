@@ -36,3 +36,18 @@ RIGHT JOIN Especialidade ON Medico.IdEspecialidade = Especialidade.IdEspecialida
 LEFT JOIN Usuario ON Medico.IdUsuario = Usuario.IdUsuario
 WHERE 
 	Especialidade.IdEspecialidade = 1
+
+--==========================================================================================================
+
+--DESAFIO
+go
+create procedure BuscarIdade
+@BuscaIdade varchar(200)
+as
+select Usuario.DataDeNascimento from Usuario
+select Usuario.Nome from Usuario
+where @BuscaIdade = Usuario.Nome
+
+execute BuscarIdade 'Pedro';
+
+drop procedure BuscarIdade

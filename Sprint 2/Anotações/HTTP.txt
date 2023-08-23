@@ -1,0 +1,3 @@
+São modos de uma request, sendo a ação que deve ser feita  
+
+GET / POST / DELETE / PUT / Etc..
