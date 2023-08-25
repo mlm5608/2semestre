@@ -43,5 +43,23 @@ namespace webapi.filmes.miguel.Controllers
                 return BadRequest(ex.Message);
             }
         }
-    }   public IActionResult 
+
+        [HttpPost]
+        public IActionResult Post(GeneroDomain nGenero)
+        {
+            try
+            {
+                //Chama o metodo e cadastra o novo genero recebido
+                _generoRepository.Cadastrar(nGenero);
+
+                //Retorna o status code 
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                //Retuorna um status code 400 e a mensagem de erro
+                return BadRequest(ex.Message);
+            }
+        }
+    }
 }

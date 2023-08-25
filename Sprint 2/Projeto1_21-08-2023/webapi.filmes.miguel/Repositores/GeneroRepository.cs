@@ -26,9 +26,29 @@ namespace webapi.filmes.miguel.Repositores
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Cadastra um novo gênero
+        /// </summary>
+        /// <param name="novoGenero"> Objeto com as novas informações que seráo cadastradas</param>
         public void Cadastrar(GeneroDomain novoGenero)
         {
-            throw new NotImplementedException();
+            //Declara a SQLConnection passando a string de conexão como parâmetro
+            using (SqlConnection con = new SqlConnection(StringConexao)) 
+            {
+                //Declara a query que será executada
+                string queryInsert = "INSERT INTO Genero(Nome) values (' " + novoGenero.Nome + " ')";
+
+                //Abre a conexão com o banco de dados
+                con.Open();
+                
+                //Declara o SQL command  passando a query que será executada e a conexão com o bd
+                using (SqlCommand cmd = new SqlCommand(queryInsert, con)) 
+                {
+
+                    //Executa a query
+                    cmd.ExecuteNonQuery();                    
+                }
+            }
         }
 
         public void Deletar(int id)
