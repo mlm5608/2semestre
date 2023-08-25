@@ -23,7 +23,29 @@ namespace webapi.filmes.miguel.Repositores
 
         public GeneroDomain BuscarPorID(int id)
         {
-            throw new NotImplementedException();
+            GeneroDomain generoBuscado = new GeneroDomain();
+            
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string querySearch = "UPDATE INTO Genero WHERE IdGenero = (@IdBuscado)";
+
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(querySearch, con))
+                {
+                    rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        generoBuscado.IdGenero = Convert.ToInt32(rdr["ID"]);
+
+                        generoBuscado.Nome = Convert.ToString(rdr["Nome"]);   
+                    }
+                }
+            }
+            return generoBuscado;
         }
 
         /// <summary>
@@ -36,14 +58,16 @@ namespace webapi.filmes.miguel.Repositores
             using (SqlConnection con = new SqlConnection(StringConexao)) 
             {
                 //Declara a query que será executada
-                string queryInsert = "INSERT INTO Genero(Nome) values (' " + novoGenero.Nome + " ')";
-
-                //Abre a conexão com o banco de dados
-                con.Open();
-                
+                string queryInsert = "INSERT INTO Genero(Nome) values (@Nome)";
+          
                 //Declara o SQL command  passando a query que será executada e a conexão com o bd
                 using (SqlCommand cmd = new SqlCommand(queryInsert, con)) 
                 {
+                    //Passa o valor do parâmetro @Nome
+                    cmd.Parameters.AddWithValue("@Nome", novoGenero.Nome);
+                    
+                    //Abre a conexão com o banco de dados
+                    con.Open();
 
                     //Executa a query
                     cmd.ExecuteNonQuery();                    
@@ -53,7 +77,19 @@ namespace webapi.filmes.miguel.Repositores
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            { 
+                string queryDelete = "DELETE FROM Genero WHERE IdGenero = @id";
+
+                using (SqlCommand cmd = new SqlCommand(queryDelete, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<GeneroDomain> ListarTodos()

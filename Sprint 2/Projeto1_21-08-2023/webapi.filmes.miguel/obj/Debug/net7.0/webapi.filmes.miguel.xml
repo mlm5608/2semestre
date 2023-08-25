@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>webapi.filmes.miguel</name>
+    </assembly>
+    <members>
+        <member name="P:webapi.filmes.miguel.Controllers.GeneroController._generoRepository">
+            <summary>
+            Objeto que irá receber os métodos definidos na interface
+            </summary>
+        </member>
+        <member name="M:webapi.filmes.miguel.Controllers.GeneroController.Get">
+            <summary>
+            Endpoint que acessa o metodo de listar os generos
+            </summary>
+            <returns>Lista de generos e um statuscode</returns>
+        </member>
+        <member name="T:webapi.filmes.miguel.Domains.FilmeDomain">
+            <summary>
+            Classe que representa entidade/tabela Filme
+            </summary>
+        </member>
+        <member name="T:webapi.filmes.miguel.Domains.GeneroDomain">
+            <summary>
+            Classe que representa a entidade/tabela Genero
+            </summary>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IFilmeRepository.Cadastrar(webapi.filmes.miguel.Domains.FilmeDomain)">
+            <summary>
+            Cadatra um novo genero 
+            </summary>
+            <param name="novoFilme">Objeto que será cadastrado</param>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IFilmeRepository.ListarTodos">
+            <summary>
+            Retorna todos os generos cadastrados
+            </summary>
+            <returns>Uma lista de generos (Objetos)</returns>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IFilmeRepository.BuscarPorID(System.Int32)">
+            <summary>
+            Buscar um objeto atravéz do seu id 
+            </summary>
+            <param name="id">id do objeto a ser busado</param>
+            <returns>Objeto que foi buscado</returns>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IFilmeRepository.AtualizarIdCorpo(webapi.filmes.miguel.Domains.FilmeDomain)">
+            <summary>
+            Atualiza um genero existente passando o id pelo corpo da requisição
+            </summary>
+            <param name="genero">Objeto que conterá as novas infos</param>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IFilmeRepository.AtualizarIdUrl(System.Int32,webapi.filmes.miguel.Domains.FilmeDomain)">
+            <summary>
+            Atualiza um genero existente passando o id pela URL da requisição
+            </summary>
+            <param name="id">id do objeto a ser atualizado</param>
+            <param name="genero">Objeto com as novas informações</param>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IFilmeRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um genero existente
+            </summary>
+            <param name="id">Id do objeto a ser deletado</param>
+        </member>
+        <member name="T:webapi.filmes.miguel.Interfaces.IGeneroRepository">
+            <summary>
+            Interface responsável pelo repositório GeneroRepository
+            Define os métodos que serão implementados pelo repositório
+            </summary>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IGeneroRepository.Cadastrar(webapi.filmes.miguel.Domains.GeneroDomain)">
+            <summary>
+            Cadatra um novo genero 
+            </summary>
+            <param name="novoGenero">Objeto que será cadastrado</param>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IGeneroRepository.ListarTodos">
+            <summary>
+            Retorna todos os generos cadastrados
+            </summary>
+            <returns>Uma lista de generos (Objetos)</returns>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IGeneroRepository.BuscarPorID(System.Int32)">
+            <summary>
+            Buscar um objeto atravéz do seu id 
+            </summary>
+            <param name="id">id do objeto a ser busado</param>
+            <returns>Objeto que foi buscado</returns>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IGeneroRepository.AtualizarIdCorpo(webapi.filmes.miguel.Domains.GeneroDomain)">
+            <summary>
+            Atualiza um genero existente passando o id pelo corpo da requisição
+            </summary>
+            <param name="genero">Objeto que conterá as novas infos</param>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IGeneroRepository.AtualizarIdUrl(System.Int32,webapi.filmes.miguel.Domains.GeneroDomain)">
+            <summary>
+            Atualiza um genero existente passando o id pela URL da requisição
+            </summary>
+            <param name="id">id do objeto a ser atualizado</param>
+            <param name="genero">Objeto com as novas informações</param>
+        </member>
+        <member name="M:webapi.filmes.miguel.Interfaces.IGeneroRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um genero existente
+            </summary>
+            <param name="id">Id do objeto a ser deletado</param>
+        </member>
+        <member name="T:webapi.filmes.miguel.Repositores.GeneroRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:webapi.filmes.miguel.Repositores.GeneroRepository.Cadastrar(webapi.filmes.miguel.Domains.GeneroDomain)">
+            <summary>
+            Cadastra um novo gênero
+            </summary>
+            <param name="novoGenero"> Objeto com as novas informações que seráo cadastradas</param>
+        </member>
+    </members>
+</doc>

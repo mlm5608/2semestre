@@ -61,5 +61,35 @@ namespace webapi.filmes.miguel.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _generoRepository.Deletar(id);
+
+                return StatusCode(204);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        public IActionResult Search(int id)
+        {
+            try
+            {
+                _generoRepository.BuscarPorID(id);
+
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

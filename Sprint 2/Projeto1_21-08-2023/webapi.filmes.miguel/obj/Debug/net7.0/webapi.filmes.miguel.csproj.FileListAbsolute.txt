@@ -31,3 +31,10 @@ C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filme
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\obj\Debug\net7.0\webapi.filmes.miguel.csproj.CopyComplete
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\obj\Debug\net7.0\webapi.filmes.miguel.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\webapi.filmes.miguel.xml
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\obj\Debug\net7.0\webapi.filmes.miguel.xml
