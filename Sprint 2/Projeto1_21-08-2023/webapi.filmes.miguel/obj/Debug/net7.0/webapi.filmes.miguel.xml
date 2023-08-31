@@ -25,6 +25,11 @@
             Classe que representa a entidade/tabela Genero
             </summary>
         </member>
+        <member name="T:webapi.filmes.miguel.Domains.UsuarioDomain">
+            <summary>
+            Classe que Representa a entidade Usuario
+            </summary>
+        </member>
         <member name="M:webapi.filmes.miguel.Interfaces.IFilmeRepository.Cadastrar(webapi.filmes.miguel.Domains.FilmeDomain)">
             <summary>
             Cadatra um novo genero 

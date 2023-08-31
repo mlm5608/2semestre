@@ -13,12 +13,36 @@ namespace webapi.filmes.miguel.Repositores
 
         public void AtualizarIdCorpo(GeneroDomain genero)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryUpdate = "UPDATE Genero SET Nome = (@novoNome) WHERE IdGenero = (@id)";
+
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+                {
+                    cmd.Parameters.AddWithValue("@novoNome", genero.Nome);
+                    cmd.Parameters.AddWithValue("@id", genero.IdGenero);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void AtualizarIdUrl(int id, GeneroDomain genero)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryUpdate = "UPDATE Genero SET Nome = (@novoNome) WHERE IdGenero = (@id)";
+
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+                {
+                    cmd.Parameters.AddWithValue("@novoNome", genero.Nome);
+                    cmd.Parameters.AddWithValue("@id", id);                
+                    cmd.ExecuteNonQuery();
+                }
+            } 
         }
 
         public GeneroDomain BuscarPorID(int id)
@@ -26,22 +50,26 @@ namespace webapi.filmes.miguel.Repositores
             GeneroDomain generoBuscado = new GeneroDomain();
             
             using (SqlConnection con = new SqlConnection(StringConexao))
-            {
-                string querySearch = "UPDATE INTO Genero WHERE IdGenero = (@IdBuscado)";
+            { 
+                string querySearch = "SELECT * FROM Genero WHERE IdGenero = (@id)";
 
                 con.Open();
 
-                SqlDataReader rdr;
-
                 using (SqlCommand cmd = new SqlCommand(querySearch, con))
                 {
+                   SqlDataReader rdr; 
+                    
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+
                     rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())
                     {
-                        generoBuscado.IdGenero = Convert.ToInt32(rdr["ID"]);
+                        generoBuscado.IdGenero = Convert.ToInt32(rdr[0]);
 
-                        generoBuscado.Nome = Convert.ToString(rdr["Nome"]);   
+                        generoBuscado.Nome = Convert.ToString(rdr["Nome"]);
                     }
                 }
             }

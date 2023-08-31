@@ -27,7 +27,7 @@ namespace webapi.filmes.miguel.Controllers
         /// </summary>
         /// <returns>Lista de generos e um statuscode</returns>
         [HttpGet]
-        public IActionResult Get() 
+        public IActionResult Get()
         {
             try
             {
@@ -37,7 +37,7 @@ namespace webapi.filmes.miguel.Controllers
                 //Retorna o status code 200 e a listagem dos generos no formato JSON
                 return Ok(ListaGeneros);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Retuorna um status code 400 e a mensagem de erro
                 return BadRequest(ex.Message);
@@ -78,11 +78,32 @@ namespace webapi.filmes.miguel.Controllers
             }
         }
 
+        [HttpGet("{id}")]
         public IActionResult Search(int id)
         {
             try
             {
-                _generoRepository.BuscarPorID(id);
+                GeneroDomain GeneroBuscado = _generoRepository.BuscarPorID(id);
+
+                if ((GeneroBuscado.Nome == null) && (GeneroBuscado.IdGenero == 0))
+                {
+                    return NotFound("O gênero buscado não foi encontrado!");
+                }
+
+                return StatusCode(200, GeneroBuscado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult UpdateURL(int id, GeneroDomain genero)
+        {
+            try
+            {
+                _generoRepository.AtualizarIdUrl(id, genero);
 
                 return StatusCode(200);
             }
@@ -91,5 +112,21 @@ namespace webapi.filmes.miguel.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPatch]
+        public IActionResult UpdateBody(GeneroDomain genero)
+        {
+            try
+            {
+                _generoRepository.AtualizarIdCorpo(genero);
+
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+    
     }
 }
