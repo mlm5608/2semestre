@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.filmes.miguel.Domains;
 using webapi.filmes.miguel.Interfaces;
@@ -8,7 +9,7 @@ namespace webapi.filmes.miguel.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]//precisa estar logado para acessar a rota
     [Produces("application/json")]
     public class GeneroController : ControllerBase
     {
@@ -27,6 +28,7 @@ namespace webapi.filmes.miguel.Controllers
         /// </summary>
         /// <returns>Lista de generos e um statuscode</returns>
         [HttpGet]
+        
         public IActionResult Get()
         {
             try

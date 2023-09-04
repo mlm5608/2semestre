@@ -38,3 +38,11 @@ C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filme
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\obj\Debug\net7.0\webapi.filmes.miguel.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\webapi.filmes.miguel.xml
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\obj\Debug\net7.0\webapi.filmes.miguel.xml
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\Projeto1_21-08-2023\webapi.filmes.miguel\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
