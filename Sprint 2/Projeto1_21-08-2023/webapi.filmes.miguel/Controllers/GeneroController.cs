@@ -47,6 +47,7 @@ namespace webapi.filmes.miguel.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "true")]
         public IActionResult Post(GeneroDomain nGenero)
         {
             try

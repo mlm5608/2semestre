@@ -32,7 +32,7 @@ namespace webapi.filmes.miguel.Repositores
                         userLogado.Nome = Convert.ToString(rdr[1]);
                         userLogado.Email = Convert.ToString(rdr[2]);
                         userLogado.Senha = Convert.ToString(rdr[3]);
-                        userLogado.Permissao = Convert.ToBoolean(rdr[4]);
+                        userLogado.Permissao = Convert.ToInt32(rdr[4]) == 1 ? true : false;
 
                         return userLogado;
                     }
