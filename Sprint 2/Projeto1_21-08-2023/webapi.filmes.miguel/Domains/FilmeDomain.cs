@@ -8,6 +8,7 @@ namespace webapi.filmes.miguel.Domains
     public class FilmeDomain
     {
         public int IdFilme { get; set; }
+
         [Required(ErrorMessage = "O titulo do filme é obrigatório!")]
         public string? Titulo { get; set; }
 
