@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>senai.inlock.webApi</name>
+    </assembly>
+    <members>
+        <member name="M:senai.inlock.webApi.Interfaces.IJogoRepository.Cadastrar(senai.inlock.webApi.Domains.JogoDomain)">
+            <summary>
+            Cria um novo objeto e o adiciona ao BD.
+            </summary>
+            <param name="NovoJogo"> Objeto que será adicionado</param>
+        </member>
+        <member name="M:senai.inlock.webApi.Interfaces.IJogoRepository.ListarTodos">
+            <summary>
+            Lê e mostra todos os objetos cadastrados.
+            </summary>
+            <returns> Retorna a lista de objetos </returns>
+        </member>
+    </members>
+</doc>

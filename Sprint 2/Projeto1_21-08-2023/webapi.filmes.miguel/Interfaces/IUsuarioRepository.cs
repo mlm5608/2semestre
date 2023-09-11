@@ -4,9 +4,6 @@ namespace webapi.filmes.miguel.Interfaces
 {
     public interface IUsuarioRepository
     {
-        UsuarioDomain login(string email, string senha)
-        {
-            throw new NotImplementedException();
-        }
+        UsuarioDomain login(string email, string senha);
     }
 }

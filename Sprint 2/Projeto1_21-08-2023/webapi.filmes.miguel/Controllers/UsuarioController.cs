@@ -8,8 +8,8 @@ using webapi.filmes.miguel.Interfaces;
 using webapi.filmes.miguel.Repositores;
 
 namespace webapi.filmes.miguel.Controllers
-
-{       [Route("api/[controller]")]
+{       
+        [Route("api/[controller]")]
         [ApiController]
         [Produces("application/json")]
 
