@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "44bfLzCDHJQx9uxE8UVCnYyQ/xBVTxfTZDW2thuSGWQ=",
+  "Source": "webapi.inlock.tarde.dbFirst",
+  "BasePath": "_content/webapi.inlock.tarde.dbFirst",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
