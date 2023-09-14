@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Hx+U4LMMLRswPYePJziSfuUFcER6t90IRjE3Y7ty4ojWtqG1/o+H80eQzVVjFm11to984MQaD1dawR63+SfZnQ==",
+  "dgSpecHash": "mXW8hZvKH7v0QvqL+yZKmwfCq3kr3wtc797j4qLuxp7WHj/Lu2YWNBANzvIqHNK3LLoKES3p9FHSx9GMp9gZGQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\50866670890\\Desktop\\2semestre\\Sprint 2\\ORM\\Code First\\webapi.inlock.tarde.CodeFirst.sln\\webapi.inlock.tarde.CodeFirst.sln.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\50866670890\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\50866670890\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\50866670890\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\50866670890\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\50866670890\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.11\\microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",
     "C:\\Users\\50866670890\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

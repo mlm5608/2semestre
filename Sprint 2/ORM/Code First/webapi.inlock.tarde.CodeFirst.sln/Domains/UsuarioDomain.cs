@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace webapi.inlock.tarde.CodeFirst.sln.Domains
 {
     [Table("Usuarios")]
+    [Index(nameof(Email), IsUnique = true)]
     public class UsuarioDomain
     {
         [Key]
@@ -12,14 +13,15 @@ namespace webapi.inlock.tarde.CodeFirst.sln.Domains
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required(ErrorMessage = "O email é obrigatório !")]
-        [Index(IsUnique = true)]
+        
         public string? Email { get; set; }
 
-        [Column(TypeName = "VARCHAR(100)")]
+        [Column(TypeName = "VARCHAR(200)")]
         [Required(ErrorMessage = "A senha é obrigatório !")]
-        [StringLength(20, MinimumLength = 6, ErrorMessage ="A senha deve conter de 6 a 20 caracteres!")]
+        [StringLength(60, MinimumLength = 6, ErrorMessage ="A senha deve conter de 6 a 20 caracteres!")]
         public string Senha { get; set; }
 
+        [Required(ErrorMessage = "O usuario dave ter um tipo !")]
         public Guid IdTipoDeUsuario { get; set; }
 
         [ForeignKey("IdTipoDeUsuario")]

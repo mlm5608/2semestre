@@ -22,7 +22,7 @@ namespace webapi.inlock.tarde.CodeFirst.sln.Domains
         public DateTime DataLancamento { get; set; }
 
         [Column(TypeName = "DECIMAL(4,2)")]
-        [Required(ErrorMessage = "O é necessária")]
+        [Required(ErrorMessage = "O Preco é necessário")]
         public decimal Preco { get; set; }
 
         //ref tabela de estudio (Foreign key)
