@@ -33,19 +33,6 @@ namespace webapi.inlock.tarde.CodeFirst.sln.Controllers
             }
         }
 
-        //falta a implementação
-        [HttpGet]
-        public IActionResult Get() 
-        {
-            try
-            {
-                
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
     }
 }
