@@ -32,7 +32,5 @@ namespace webapi.inlock.tarde.CodeFirst.sln.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-        }
     }
 }

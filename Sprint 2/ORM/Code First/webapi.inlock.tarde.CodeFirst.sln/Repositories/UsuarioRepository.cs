@@ -44,6 +44,8 @@ namespace webapi.inlock.tarde.CodeFirst.sln.Repositories
                     {
                         return usuarioBuscado;
                     }
+
+                    return null;
                 }
                 else
                 {
