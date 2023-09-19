@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>webapi.event+.tarde</name>
+    </assembly>
+    <members>
+        <member name="T:webapi.event_.tarde.Migrations.Db">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.event_.tarde.Migrations.Db.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.event_.tarde.Migrations.Db.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.event_.tarde.Migrations.Db.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.event_.tarde.Utils.Criptografia.GerarHash(System.String)">
+            <summary>
+            Gera uma hash a partir de uma senha
+            </summary>
+            <param name="senha">Senha que receberá a criptografia</param>
+            <returns> Senha criptografada </returns>
+        </member>
+        <member name="M:webapi.event_.tarde.Utils.Criptografia.compararHash(System.String,System.String)">
+            <summary>
+            Verifica se a senha informada é igual a cadastrada
+            </summary>
+            <param name="senhaForm"> Senha digitada pelo usuario no formulario de login</param>
+            <param name="SenhaBanco"> Senha presente no banco de dados</param>
+            <returns> True ou False</returns>
+        </member>
+    </members>
+</doc>
