@@ -9,28 +9,27 @@ namespace webapi.event_.tarde.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class TipoUsuarioController : ControllerBase
+    public class TipoEventoController : ControllerBase
     {
-        private ITipoUsuarioRepository _tipoUsuarioRepository { get; set; }
+        private ITipoEventoRepository _tipoEvento;
 
-        public TipoUsuarioController()
+        public TipoEventoController()
         {
-            _tipoUsuarioRepository = new TipoUsuarioRepository();
+            _tipoEvento = new TipoEventoRepository();
         }
 
         [HttpPost]
-        public IActionResult Post(TipoUsuario tipoUsuario) 
+        public IActionResult Post(TipoEvento novoTipo)
         {
             try
             {
-                _tipoUsuarioRepository.Cadastrar(tipoUsuario);
+                _tipoEvento.Cadastrar(novoTipo);
                 return StatusCode(201);
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-
         }
 
         [HttpGet]
@@ -38,13 +37,12 @@ namespace webapi.event_.tarde.Controllers
         {
             try
             {
-                return Ok(_tipoUsuarioRepository.Listar());
+                return Ok(_tipoEvento.Listar());
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-
         }
 
         [HttpDelete]
@@ -52,7 +50,7 @@ namespace webapi.event_.tarde.Controllers
         {
             try
             {
-                _tipoUsuarioRepository.Deletar(Id);
+                _tipoEvento.Deletar(Id);
                 return NoContent();
             }
             catch (Exception e)
@@ -62,11 +60,12 @@ namespace webapi.event_.tarde.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid Id) 
+        public IActionResult GetById(Guid Id)
         {
             try
             {
-                return Ok(_tipoUsuarioRepository.BuscarPorId(Id));
+
+                return Ok(_tipoEvento.BuscarPorId(Id));
             }
             catch (Exception e)
             {
@@ -75,11 +74,11 @@ namespace webapi.event_.tarde.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(Guid id, TipoUsuario user)
+        public IActionResult Put(Guid id, TipoEvento user)
         {
             try
             {
-                _tipoUsuarioRepository.Atualizar(id, user);
+                _tipoEvento.Atualizar(id, user);
                 return NoContent();
             }
             catch (Exception e)

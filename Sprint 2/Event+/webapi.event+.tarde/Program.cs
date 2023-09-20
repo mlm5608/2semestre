@@ -53,7 +53,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Version = "v1",
         Title = "API Event+ Miguel",
-        Description = "API para gerenciamento de Eventos - Introdução a sprint 2 - Backend API",
+        Description = "API para gerenciamento de Eventos - Backend API",
         Contact = new OpenApiContact
         {
             Name = "Miguel Lamarca",
@@ -95,6 +95,13 @@ builder.Services.AddSwaggerGen(options =>
 
 
 var app = builder.Build();
+
+//atender à interface do usuário do Swagger na raiz do aplicativo
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

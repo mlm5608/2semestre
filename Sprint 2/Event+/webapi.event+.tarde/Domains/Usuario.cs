@@ -31,7 +31,7 @@ namespace webapi.event_.tarde.Domains
         public Guid IdTipoUsuario { get; set; }
 
         [ForeignKey(nameof(IdTipoUsuario))]
-        public TipoUsuario? TipoUSuario { get; set; }
+        public TipoUsuario? TipoUsuario { get; set; }
 
 
     }

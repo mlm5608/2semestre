@@ -14,6 +14,27 @@ namespace webapi.event_.tarde.Repositories
             _eventContext = new EventContext();
         }
 
+        public void Atualizar(Guid id, Usuario usuario)
+        {
+            try
+            {
+                Usuario u = _eventContext.Usuario.Find(id);
+                if (u != null) 
+                { 
+                    u.Email = usuario.Email;
+                    u.Senha = usuario.Senha;
+                    u.IdTipoUsuario = usuario.IdTipoUsuario;
+                }
+                _eventContext.Usuario.Update(u);
+                _eventContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public Usuario BuscarPorEmailESenha(string email, string senha)
         {
             Usuario usuarioBuscado = _eventContext.Usuario.FirstOrDefault(u => u.Email == email)!;
@@ -40,10 +61,10 @@ namespace webapi.event_.tarde.Repositories
                     Nome = u.Nome,
                     Email = u.Email,
 
-                    TipoUSuario = new TipoUsuario
+                    TipoUsuario = new TipoUsuario
                     {
                         IdTipoUsuario = u.IdTipoUsuario,
-                        Titulo = u.TipoUSuario!.Titulo
+                        Titulo = u.TipoUsuario!.Titulo
                     }
                 }).FirstOrDefault(u => u.IdUsuario == id)!;
 
@@ -66,6 +87,37 @@ namespace webapi.event_.tarde.Repositories
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public void Deletar(Guid id)
+        {
+            try
+            {
+                Usuario u = _eventContext.Usuario.Find(id)!;
+                if (u != null)
+                {
+                    _eventContext.Remove(u);
+                }
+                _eventContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Usuario> Listar()
+        {
+            try
+            {
+                return _eventContext.Usuario.ToList();
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

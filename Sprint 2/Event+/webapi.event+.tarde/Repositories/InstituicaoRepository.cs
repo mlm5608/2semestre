@@ -4,73 +4,71 @@ using webapi.event_.tarde.Interfaces;
 
 namespace webapi.event_.tarde.Repositories
 {
-    public class TipoUsuarioRepository : ITipoUsuarioRepository
+    public class InstituicaoRepository : IInstituicaoRepository
     {
         private readonly EventContext _eventContext;
 
-        public TipoUsuarioRepository()
+        public InstituicaoRepository()
         {
             _eventContext = new EventContext();
         }
-        public void Atualizar(Guid id, TipoUsuario tipoUsuario)
+
+        public void Atualizar(Guid id, Instituicao instituicao)
         {
             try
             {
-                TipoUsuario tipo = _eventContext.TipoUsuario.Find(id)!;
+                Instituicao inst = _eventContext.Instituicao.Find(id)!;
 
-                if (tipo != null)
+                if (inst != null)
                 {
-                    tipo.Titulo = tipoUsuario.Titulo;
+                    inst.CNPJ = instituicao.CNPJ;
+                    inst.Endereco = instituicao.Endereco;
+                    inst.NomeFantasia = instituicao.NomeFantasia;
                 }
-                _eventContext.TipoUsuario.Update(tipo!);
+                _eventContext.Instituicao.Update(inst!);
                 _eventContext.SaveChanges();
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
-        public TipoUsuario BuscarPorId(Guid id)
+        public Instituicao BuscarPorId(Guid id)
         {
             try
             {
-                return _eventContext.TipoUsuario.FirstOrDefault(e => e.IdTipoUsuario == id)!;
+                return _eventContext.Instituicao.FirstOrDefault(e => e.IdIntituicao == id)!;
             }
             catch (Exception)
             {
                 throw;
             }
-           
         }
 
-        public void Cadastrar(TipoUsuario novoTipo)
+        public void Cadastrar(Instituicao novaInstituicao)
         {
             try
             {
-                _eventContext.TipoUsuario.Add(novoTipo);
+                _eventContext.Instituicao.Add(novaInstituicao);
 
                 _eventContext.SaveChanges();
             }
             catch (Exception)
             {
-
                 throw;
             }
-            
         }
 
         public void Deletar(Guid id)
         {
-            
             try
             {
-                TipoUsuario tipo = _eventContext.TipoUsuario.Find(id)!;
+                Instituicao inst = _eventContext.Instituicao.Find(id)!;
 
-                if (tipo != null)
+                if (inst != null)
                 {
-                    _eventContext.Remove(tipo);
+                    _eventContext.Remove(inst);
                 }
                 _eventContext.SaveChanges();
             }
@@ -80,11 +78,11 @@ namespace webapi.event_.tarde.Repositories
             }
         }
 
-        public List<TipoUsuario> Listar()
+        public List<Instituicao> Listar()
         {
             try
             {
-                return _eventContext.TipoUsuario.ToList();
+                return _eventContext.Instituicao.ToList();
             }
             catch (Exception)
             {

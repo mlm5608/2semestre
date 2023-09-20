@@ -31,9 +31,9 @@ namespace webapi.event_.tarde.Controllers
                 var Claims = new[]
                     {
                         new Claim(JwtRegisteredClaimNames.Jti, usuario.IdUsuario.ToString()),
-                        new Claim(JwtRegisteredClaimNames.Name, usuario.Nome.ToString()),
+                        new Claim(JwtRegisteredClaimNames.Name, usuario.Nome!.ToString()),
                         new Claim(JwtRegisteredClaimNames.Email, usuario.Email!.ToString()),
-                        new Claim(ClaimTypes.Role, usuario.IdTipoUsuario.ToString())
+                        new Claim(ClaimTypes.Role, usuario.TipoUsuario!.Titulo!.ToString())
                     };
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("WebApi-Autetication-Event+-abcdefghijk"));
 
