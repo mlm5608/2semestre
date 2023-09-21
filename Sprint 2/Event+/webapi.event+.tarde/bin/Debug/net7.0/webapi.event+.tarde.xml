@@ -4,16 +4,16 @@
         <name>webapi.event+.tarde</name>
     </assembly>
     <members>
-        <member name="T:webapi.event_.tarde.Migrations.Db">
+        <member name="T:webapi.event_.tarde.Migrations.BD">
             <inheritdoc />
         </member>
-        <member name="M:webapi.event_.tarde.Migrations.Db.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:webapi.event_.tarde.Migrations.BD.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:webapi.event_.tarde.Migrations.Db.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:webapi.event_.tarde.Migrations.BD.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:webapi.event_.tarde.Migrations.Db.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:webapi.event_.tarde.Migrations.BD.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="M:webapi.event_.tarde.Utils.Criptografia.GerarHash(System.String)">

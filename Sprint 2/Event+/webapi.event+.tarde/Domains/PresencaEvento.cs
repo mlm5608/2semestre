@@ -7,7 +7,7 @@ namespace webapi.event_.tarde.Domains
     public class PresencaEvento
     {
         [Key]
-        public Guid IdPresecaEvento { get; set; }
+        public Guid IdPresecaEvento { get; set; } = new Guid();
 
         [Column(TypeName = "BIT")]
         [Required(ErrorMessage = "A situação do evento é necessária")]

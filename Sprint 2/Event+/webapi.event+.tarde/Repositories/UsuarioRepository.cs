@@ -18,14 +18,14 @@ namespace webapi.event_.tarde.Repositories
         {
             try
             {
-                Usuario u = _eventContext.Usuario.Find(id);
+                Usuario u = _eventContext.Usuario.Find(id)!;
                 if (u != null) 
                 { 
                     u.Email = usuario.Email;
                     u.Senha = usuario.Senha;
                     u.IdTipoUsuario = usuario.IdTipoUsuario;
                 }
-                _eventContext.Usuario.Update(u);
+                _eventContext.Usuario.Update(u!);
                 _eventContext.SaveChanges();
             }
             catch (Exception)
@@ -47,7 +47,7 @@ namespace webapi.event_.tarde.Repositories
                     return usuarioBuscado;
                 }
             }
-            return null;
+            return null!;
         }
 
         public Usuario BuscarPorId(Guid id)

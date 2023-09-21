@@ -9,64 +9,77 @@ namespace webapi.event_.tarde.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class TipoUsuarioController : ControllerBase
+    public class PresencaEventoController : ControllerBase
     {
-        private ITipoUsuarioRepository _tipoUsuarioRepository { get; set; }
+        private readonly IPresencaEventoRepository _PresencaEventoRepository;
 
-        public TipoUsuarioController()
+        public PresencaEventoController()
         {
-            _tipoUsuarioRepository = new TipoUsuarioRepository();
+            _PresencaEventoRepository = new PresencaEventoRepository();
         }
 
         [HttpPost]
-        public IActionResult Post(TipoUsuario tipoUsuario) 
+        public IActionResult Post(PresencaEvento presenca)
         {
             try
             {
-                _tipoUsuarioRepository.Cadastrar(tipoUsuario);
-                return StatusCode(201);
+                _PresencaEventoRepository.Cadastrar(presenca);
+                return Ok(presenca);
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-
         }
-
+        
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                return Ok(_tipoUsuarioRepository.Listar());
+                return Ok(_PresencaEventoRepository.Listar());
             }
             catch (Exception e)
             {
+
                 return BadRequest(e.Message);
             }
-
         }
 
         [HttpDelete]
-        public IActionResult Delete(Guid Id)
+        public IActionResult Delete(Guid id)
         {
             try
             {
-                _tipoUsuarioRepository.Deletar(Id);
+                _PresencaEventoRepository.Deletar(id);
                 return NoContent();
             }
             catch (Exception e)
             {
+
                 return BadRequest(e.Message);
             }
         }
-
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id) 
+        public IActionResult GetById(Guid id)
         {
             try
             {
-                return Ok(_tipoUsuarioRepository.BuscarPorId(id));
+                return Ok(_PresencaEventoRepository.BuscarPorId(id));
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpPut]
+        public IActionResult Put(Guid id, PresencaEvento presenca)
+        {
+            try
+            {
+                _PresencaEventoRepository.Atualizar(id, presenca);
+                return NoContent();
             }
             catch (Exception e)
             {
@@ -74,18 +87,10 @@ namespace webapi.event_.tarde.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Put(Guid id, TipoUsuario user)
-        {
-            try
-            {
-                _tipoUsuarioRepository.Atualizar(id, user);
-                return NoContent();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+        [HttpGet("ListarMinhas")]
+        public IActionResult GetMy(Guid id) 
+        { 
+            return Ok(_PresencaEventoRepository.ListarMinhas(id));
         }
     }
 }

@@ -12,8 +12,8 @@ using webapi.event_.tarde.Contexts;
 namespace webapi.event_.tarde.Migrations
 {
     [DbContext(typeof(EventContext))]
-    [Migration("20230918201802_Db")]
-    partial class Db
+    [Migration("20230921181531_BD")]
+    partial class BD
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -257,13 +257,13 @@ namespace webapi.event_.tarde.Migrations
 
             modelBuilder.Entity("webapi.event_.tarde.Domains.Usuario", b =>
                 {
-                    b.HasOne("webapi.event_.tarde.Domains.TipoUsuario", "TipoUSuario")
+                    b.HasOne("webapi.event_.tarde.Domains.TipoUsuario", "TipoUsuario")
                         .WithMany()
                         .HasForeignKey("IdTipoUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TipoUSuario");
+                    b.Navigation("TipoUsuario");
                 });
 #pragma warning restore 612, 618
         }

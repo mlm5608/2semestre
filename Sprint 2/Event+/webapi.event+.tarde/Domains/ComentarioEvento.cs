@@ -9,7 +9,7 @@ namespace webapi.event_.tarde.Domains
     {
 
         [Key]
-        public Guid IdComentarioEvento { get; set; }
+        public Guid IdComentarioEvento { get; set; } = new Guid();
 
         [Column(TypeName = "TEXT")]
         [Required(ErrorMessage = "A descrição do comentario obrigatória!")]

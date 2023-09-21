@@ -36,7 +36,7 @@ namespace webapi.event_.tarde.Repositories
         {
             try
             {
-                return _eventContext.TipoUsuario.FirstOrDefault(e => e.IdTipoUsuario == id)!;
+                return _eventContext.TipoUsuario.Find(id)!;
             }
             catch (Exception)
             {

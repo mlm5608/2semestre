@@ -24,7 +24,7 @@ namespace webapi.event_.tarde.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel user)
         {
-            Usuario usuario = _usuarioRepository.BuscarPorEmailESenha(user.Email, user.Senha);
+            Usuario usuario = _usuarioRepository.BuscarPorEmailESenha(user.Email!, user.Senha!);
 
             if (usuario != null)
             {
@@ -63,7 +63,7 @@ namespace webapi.event_.tarde.Controllers
                 });
             }
 
-            return null;
+            return null!;
         }
     }
 }

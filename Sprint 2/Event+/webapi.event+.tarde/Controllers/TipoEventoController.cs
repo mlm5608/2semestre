@@ -60,12 +60,12 @@ namespace webapi.event_.tarde.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid Id)
+        public IActionResult GetById(Guid id)
         {
             try
             {
 
-                return Ok(_tipoEvento.BuscarPorId(Id));
+                return Ok(_tipoEvento.BuscarPorId(id));
             }
             catch (Exception e)
             {
