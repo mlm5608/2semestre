@@ -78,7 +78,6 @@ namespace webapi.event_.tarde.Repositories
 
         public void Cadastrar(Usuario novoUsuario)
         {
-
             try
             {
                 novoUsuario.Senha = Criptografia.GerarHash(novoUsuario.Senha!);
