@@ -7,7 +7,7 @@ namespace webapi.healthClinic.miguel.Interfaces
         void Cadastrar(Paciente p);
         List<Paciente> ListarTodos();
         void Deletar(Guid id);
-        Paciente BuscarPorId(Guid id);
+        Paciente BuscarPorCPF(string cpf);
         void Atualizar(Paciente p, Guid id);
     }
 }

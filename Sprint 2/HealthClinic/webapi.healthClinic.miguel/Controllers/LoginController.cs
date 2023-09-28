@@ -63,7 +63,7 @@ namespace webapi.healthClinic.miguel.Controllers
                 });
             }
 
-            return null!;
+            return StatusCode(404);
         }
     }
 }

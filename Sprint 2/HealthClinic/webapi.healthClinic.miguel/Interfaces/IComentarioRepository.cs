@@ -8,6 +8,6 @@ namespace webapi.healthClinic.miguel.Interfaces
         void Deletar(Guid id);
         List<Comentario> ListarTodos();
         List<Comentario> ListarMeus(Guid id);
-        Comentario BuscarPorId(Guid id);
+        Comentario BuscarPorPaciente(string cpf);
     }
 }

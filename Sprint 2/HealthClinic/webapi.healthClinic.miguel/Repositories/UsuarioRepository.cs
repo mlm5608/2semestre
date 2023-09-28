@@ -56,6 +56,7 @@ namespace webapi.healthClinic.miguel.Repositories
                 Usuario usuarioBuscado = _context.Usuario
                 .Select(u => new Usuario
                 {
+                    IdUsuario = u.IdUsuario,
                     IdTipoUsuario = u.IdTipoUsuario,
                     Nome = u.Nome,
                     Email = u.Email,

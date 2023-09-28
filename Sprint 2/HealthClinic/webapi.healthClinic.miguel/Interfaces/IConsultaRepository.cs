@@ -6,10 +6,10 @@ namespace webapi.healthClinic.miguel.Interfaces
     {
         void Cadastrar(Consulta c);
         List<Consulta> ListarTodos(); //somente ADM
-        List<Consulta> ListarMinhasMedico();//Somente medicos
-        List<Consulta> ListarMinhasPaciente();//Soemnte pacientes
+        List<Consulta> ListarMinhasMedico(Guid id);//Somente medicos
+        List<Consulta> ListarMinhasPaciente(Guid id);//Somente pacientes
         void Deletar(Guid id);
-        Comentario BuscarPorId(Guid id);
+        Consulta BuscarPorPaciente(string nome);
         void Atualizar(Consulta c, Guid id);
     }
 }
