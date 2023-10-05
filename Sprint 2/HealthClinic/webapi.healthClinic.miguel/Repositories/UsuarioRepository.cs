@@ -1,4 +1,5 @@
-﻿using webapi.healthClinic.miguel.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using webapi.healthClinic.miguel.Contexts;
 using webapi.healthClinic.miguel.Domains;
 using webapi.healthClinic.miguel.Interfaces;
 using webapi.healthClinic.miguel.Utils;
@@ -11,7 +12,7 @@ namespace webapi.healthClinic.miguel.Repositories
 
         public UsuarioRepository()
         {
-            _context= new Context();
+            _context = new Context();
         }
 
         public void Atualizar(Guid id, Usuario usuario)
@@ -36,14 +37,15 @@ namespace webapi.healthClinic.miguel.Repositories
 
         public Usuario BuscarPorEmailESenha(string email, string senha)
         {
-            Usuario usuarioBuscado = _context.Usuario.FirstOrDefault(u => u.Email == email)!;
+            Usuario userBuscado = _context.Usuario.Include(x => x.TipoUsuario)
+                .FirstOrDefault(u => u.Email == email)!;
 
-            if (usuarioBuscado != null)
+            if (userBuscado != null)
             {
-                bool conference = Criptografia.compararHash(senha, usuarioBuscado.Senha!);
+                bool conference = Criptografia.CompararHash(senha, userBuscado.Senha!);
                 if (conference)
                 {
-                    return usuarioBuscado;
+                    return userBuscado;
                 }
             }
             return null!;

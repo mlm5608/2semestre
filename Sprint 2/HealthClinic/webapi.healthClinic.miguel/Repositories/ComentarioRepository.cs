@@ -1,4 +1,5 @@
-﻿using webapi.healthClinic.miguel.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using webapi.healthClinic.miguel.Contexts;
 using webapi.healthClinic.miguel.Domains;
 using webapi.healthClinic.miguel.Interfaces;
 
@@ -33,18 +34,8 @@ namespace webapi.healthClinic.miguel.Repositories
         }
 
         public List<Comentario> ListarMeus(Guid id)
-        {
-            Paciente pac = _context.Paciente.Find(id)!;
-            List<Comentario> list = new List<Comentario>();
-
-            foreach (Comentario comnt in _context.Comentario)
-            {
-                if (comnt.Consulta!.IdPaciente == pac.IdPaciente)
-                {
-                    list.Add(comnt);
-                }
-            }
-            return list;
+        { 
+            return _context.Comentario.Include(x => x.Consulta).Where(c => c.Consulta!.IdPaciente == id).ToList();
         }
 
         public List<Comentario> ListarTodos()

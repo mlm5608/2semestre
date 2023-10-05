@@ -83,7 +83,7 @@ namespace webapi.healthClinic.miguel.Migrations
                         .IsRequired()
                         .HasColumnType("DATE");
 
-                    b.Property<TimeSpan?>("Hora")
+                    b.Property<TimeOnly?>("Hora")
                         .IsRequired()
                         .HasColumnType("TIME");
 
@@ -208,7 +208,7 @@ namespace webapi.healthClinic.miguel.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(25)");
+                        .HasColumnType("VARCHAR(60)");
 
                     b.HasKey("IdUsuario");
 

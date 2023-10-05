@@ -19,7 +19,7 @@ namespace webapi.healthClinic.miguel.Domains
 
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "O horário da consulta é necessário")]
-        public TimeSpan? Hora { get; set; }
+        public TimeOnly? Hora { get; set; }
 
         //ref a tabela de Medico
         [Required(ErrorMessage = "O Médico é obrigatório!")]

@@ -57,7 +57,7 @@ namespace webapi.healthClinic.miguel.Migrations
                     Email = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     Senha = table.Column<string>(type: "VARCHAR(60)", nullable: false),
                     Nome = table.Column<string>(type: "VARCHAR(100)", nullable: false),
-                    DataDeNascimento = table.Column<DateTime>(type: "DATE", nullable: false),
+                    DataDeNascimento = table.Column<DateTime>(type: "date", nullable: false),
                     IdTipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -122,8 +122,8 @@ namespace webapi.healthClinic.miguel.Migrations
                 {
                     IdConsulta = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Prontuario = table.Column<string>(type: "TEXT", nullable: false),
-                    Data = table.Column<DateTime>(type: "DATE", nullable: false),
-                    Hora = table.Column<TimeSpan>(type: "TIME", nullable: false),
+                    Data = table.Column<DateTime>(type: "date", nullable: false),
+                    Hora = table.Column<TimeOnly>(type: "time", nullable: false),
                     IdMedico = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdPaciente = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdClinica = table.Column<Guid>(type: "uniqueidentifier", nullable: false)

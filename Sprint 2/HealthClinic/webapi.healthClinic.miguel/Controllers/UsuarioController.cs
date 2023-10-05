@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.healthClinic.miguel.Domains;
 using webapi.healthClinic.miguel.Interfaces;
@@ -32,7 +33,9 @@ namespace webapi.healthClinic.miguel.Controllers
             }
         }
 
+
         [HttpGet]
+        [Authorize(Roles = "ADM")]
         public IActionResult Get()
         {
             try

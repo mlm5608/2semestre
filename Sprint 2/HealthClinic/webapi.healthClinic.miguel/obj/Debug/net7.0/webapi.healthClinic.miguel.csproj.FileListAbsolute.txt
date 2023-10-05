@@ -82,3 +82,5 @@ C:\Users\50866670890\Desktop\2semestre\Sprint 2\HealthClinic\webapi.healthClinic
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\HealthClinic\webapi.healthClinic.miguel\obj\Debug\net7.0\ref\webapi.healthClinic.miguel.dll
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\HealthClinic\webapi.healthClinic.miguel\bin\Debug\net7.0\webapi.healthClinic.miguel.xml
 C:\Users\50866670890\Desktop\2semestre\Sprint 2\HealthClinic\webapi.healthClinic.miguel\obj\Debug\net7.0\webapi.healthClinic.miguel.xml
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\HealthClinic\webapi.healthClinic.miguel\bin\Debug\net7.0\EntityFrameworkCore.SqlServer.DateOnlyTimeOnly.dll
+C:\Users\50866670890\Desktop\2semestre\Sprint 2\HealthClinic\webapi.healthClinic.miguel\obj\Debug\net7.0\EFCoreSqlServerDateOnlyTimeOnly.cs

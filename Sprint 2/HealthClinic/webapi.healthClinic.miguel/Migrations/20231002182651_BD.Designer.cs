@@ -12,7 +12,7 @@ using webapi.healthClinic.miguel.Contexts;
 namespace webapi.healthClinic.miguel.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230925201638_BD")]
+    [Migration("20231002182651_BD")]
     partial class BD
     {
         /// <inheritdoc />
@@ -86,7 +86,7 @@ namespace webapi.healthClinic.miguel.Migrations
                         .IsRequired()
                         .HasColumnType("DATE");
 
-                    b.Property<TimeSpan?>("Hora")
+                    b.Property<TimeOnly?>("Hora")
                         .IsRequired()
                         .HasColumnType("TIME");
 
@@ -211,7 +211,7 @@ namespace webapi.healthClinic.miguel.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(25)");
+                        .HasColumnType("VARCHAR(60)");
 
                     b.HasKey("IdUsuario");
 
