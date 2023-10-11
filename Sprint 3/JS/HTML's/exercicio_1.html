@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="nomeApelido()">
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" placeholder="Escreva seu nome completo">
+        <br><br>
+
+        <label for="apelido">Apelido: </label>
+        <input type="text" id="apelido" placeholder="Escreva seu apelido">
+        <br>
+
+        <p><strong id="Saudacao"></strong></p>
+
+        <br>
+        <button>Enviar</button>
+    </form>
+
+    <script>
+        function nomeApelido()
+        {
+            event.preventDefault();
+            let nome = document.getElementById("nome").value
+            let apelido = document.getElementById("apelido").value
+            let Saudacao
+
+            //Saudacao = nome.replace(nome, apelido)
+            document.getElementById("Saudacao").innerText = `Olá, ${nome.replace(nome, apelido /*Saudacao*/ )}!!`
+        }
+    </script>
+</body>
+</html>
