@@ -1,3 +1,6 @@
+//lista glogal
+const listaPessoas = []; //lista vazia
+
 function calcular(e) {
     e.preventDefault();
 
@@ -12,16 +15,15 @@ function calcular(e) {
     }
 
     const imc = calcularIMC(peso, altura)
-    const situacao = geraSituacao(imc)
+    const txtsituacao = geraSituacao(imc)
 
-    const pessoa ={
-        nome : nome,
-        altura : altura,
-        peso : peso,
-        imc : imc,
-        situacao : situacao
-    }
-    console.log(pessoa);
+    const pessoa ={nome, altura, peso, imc: imc, situacao : txtsituacao}
+    
+    //Insere uma pessoa no array
+    listaPessoas.push(pessoa);
+
+    //exibir os dados
+    exibirDados();
 }
 
 function calcularIMC(peso, altura) {
@@ -45,4 +47,23 @@ function geraSituacao(imc) {
         alert("Procure um médico rapidamente, sua situação é extrema!")
         return "Obesidade III"
     }
+}
+
+function exibirDados() {
+    let linhas = ""
+
+    listaPessoas.forEach(function (oPessoa){
+        linhas +=
+        `
+        <tr>
+            <td data-cell="nome">${oPessoa.nome}</td>
+            <td data-cell="altura">${oPessoa.altura}</td>
+            <td data-cell="peso">${oPessoa.peso}</td>
+            <td data-cell="IMC">${oPessoa.imc}</td>
+            <td data-cell="Situação">${oPessoa.situacao}</td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("corpo-tabela").innerHTML = linhas
 }
