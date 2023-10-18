@@ -22,9 +22,10 @@ function calcular(e) {
     //Insere uma pessoa no array
     listaPessoas.push(pessoa);
 
-    //exibir os dados
     exibirDados();
+    limparForm()
 }
+
 
 function calcularIMC(peso, altura) {
     return peso / (altura * altura)    
@@ -66,4 +67,10 @@ function exibirDados() {
     });
 
     document.getElementById("corpo-tabela").innerHTML = linhas
+}
+
+function limparForm() {
+    document.getElementById("nome").value = ""
+    document.getElementById("peso").value = ""
+    document.getElementById("altura").value = ""
 }
