@@ -1,0 +1,23 @@
+{
+  "contatos": [
+    {
+      "cep": "09041310",
+      "endereco": "Rua Independência",
+      "bairro": "Jardim Bela Vista",
+      "cidade": "Santo André",
+      "estado": "SP",
+      "id": 1
+    },
+    {
+      "nome": "miguel lamarca",
+      "numero": "11934068807",
+      "cep": "09041310",
+      "endereco": "Rua Independência",
+      "bairro": "Jardim Bela Vista",
+      "cidade": "Santo André",
+      "estado": "SP",
+      "numeroCasa": "67",
+      "id": 2
+    }
+  ]
+}

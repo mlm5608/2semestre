@@ -8,17 +8,20 @@
 </head>
 <body>
 
-    <form>
+    <form onsubmit="cadastrar(event)">
+        <label for="nome">Nome</label>
+        <input type="text" placeholder=" Digite seu nome" id="nome" />
+        <br /><br />
+
+        <label for="numero">Numero</label>
+        <input type="number" placeholder="Digite seu Telefone (com DDD sem parenteses)" id="numero" />
+        <br/><br/>
+
         <label for="cep">CEP</label>
-        <input
-          type="number"
-          placeholder="digite o cep"
-          id="cep"
-          onblur="chamarApi()"
-        />
+        <input type="number" placeholder="digite o cep" id="cep" onblur="chamarApi()"/>
         <span id="not-found"></span>
         <br /><br />
-  
+
         <label for="endereco">Endereço</label>
         <input type="text" placeholder=" ... " id="endereco" />
         <br /><br />
@@ -34,9 +37,45 @@
         <label for="estado">Estado</label>
         <input type="text" placeholder=" ... " id="estado" />
         <br /><br />
+
+        <label for="numeroCasa">Numero da casa</label>
+        <input type="number" placeholder="Digite o numero da casa" id="numeroCasa" />
+        <br /><br />
+
+        <button>Salvar contato</button>
     </form>
     
     <script>
+        const urlLocal= "http://localhost:3000/contatos"
+        async function cadastrar(e) {
+            e.preventDefault();  
+            
+            let nome = document.getElementById("nome").value
+            let numero = document.getElementById("numero").value
+            let cep = document.getElementById("cep").value
+            let endereco = document.getElementById("endereco").value
+            let bairro = document.getElementById("bairro").value
+            let cidade = document.getElementById("cidade").value 
+            let estado = document.getElementById("estado").value 
+            let numeroCasa = document.getElementById("numeroCasa").value 
+
+            const objDados = {nome, numero, cep, endereco, bairro, cidade, estado, numeroCasa}
+
+            try {
+                const promise = await fetch(urlLocal, {
+                    body : JSON.stringify(objDados),
+                    headers: {"Content-Type" : "application/json"},
+                    method: "post"
+                });
+
+                const retorno = promise.json();
+                console.log(retorno);
+
+            } catch (error) {
+                alert("Deu ruim" + error)
+            }
+        }
+
         async function chamarApi() {
             const cep = document.getElementById("cep").value;
             const url = `https://viacep.com.br/ws/${cep}/json/`;
