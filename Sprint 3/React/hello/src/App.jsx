@@ -1,10 +1,10 @@
 import './App.css';
-import Contador from './components/Contador/Contador';
+import Rotas from './routes';
 
 function App() {
   return (
     <div className="App">
-      <Contador/>
+      <Rotas />
     </div>
   );
 }
