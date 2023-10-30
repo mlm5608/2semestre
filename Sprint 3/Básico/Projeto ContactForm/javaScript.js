@@ -5,7 +5,6 @@ async function chamarApi() {
           const promise = await fetch(url);
           const endereco = await promise.json();
 
-          console.log(endereco);
           exibirEndereco(endereco);
      } catch (error) {
           alert("Deu ruim pae");
@@ -16,8 +15,8 @@ async function chamarApi() {
 
 }
 
-const urlLocal = ""
-async function cadastrar(e) {
+const urlLocal = "http://localhost:3000/contatos"
+async function Cadastar(e) {
      e.preventDefault();
 
      let nome = document.getElementById("nome").value
