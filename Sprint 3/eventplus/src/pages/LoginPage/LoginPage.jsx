@@ -1,14 +1,14 @@
 import React from 'react';
-import './HomePage.css'
+import './LoginPage.css'
 import Header from '../../components/Header/Header';
 
-const HomePage = () => {
+const LoginPage = () => {
     return (
         <div>
             <Header/>
-            <h1>Pagina Home</h1>
+            <h1>Pagina de Login</h1>
         </div>
     );
 };
 
-export default HomePage;
+export default LoginPage;
