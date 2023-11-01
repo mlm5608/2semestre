@@ -7,11 +7,12 @@ import EventosPage from './pages/EventosPage/EventosPage'
 import LoginPage from './pages/LoginPage/LoginPage';
 import TestePage from './pages/TestePage/TestePage';
 
-
+import Header from './components/Header/Header';
 const routes = () => {
     return (
         <div>
             <BrowserRouter>
+                <Header/>
                 <Routes>
                     <Route element= {<HomePage />} path='/'/>
                     <Route element= {<TipoEventosPage />} path='/TipoDeEventos'/>
