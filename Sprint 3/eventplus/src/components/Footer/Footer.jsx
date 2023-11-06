@@ -3,7 +3,7 @@ import './Footer.css'
 const Footer = () => {
     return (
         <footer className='footerpage'>
-            <p className='footer_rights'>Todos os direitos reservados</p>
+            <p className='footer__rights'>Todos os direitos reservados</p>
         </footer>
     );
 };

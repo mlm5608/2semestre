@@ -5,10 +5,18 @@ import LogoMobile from '../../assets/images/logo-white.svg'
 import LogoDesktop from '../../assets/images/logo-pink.svg'
 
 
-const Nav = () => {
+
+const Nav = ( {exibeNavbar, setExibeNavbar } ) => {
     return (
-        <nav className='navbar'>
-            <span className='navbar__close'>X</span>
+        <nav className={`navbar ${exibeNavbar ? "exibeNavbar" : ""}`}>
+
+            <span
+             className='navbar__close' 
+             onClick={ () => {setExibeNavbar(false)} }
+             >
+                x
+            </span>
+
             <Link to="/">
                 <img 
                 className='eventlogo__logo-image' 
@@ -17,10 +25,10 @@ const Nav = () => {
             </Link>
 
             <div className='navbar__items-box'>
-                <Link to="/">Home</Link>
-                <Link to="/TipoDeEventos">Tipo Eventos</Link>
-                <Link to="/Eventos">Eventos</Link>
-                <Link to="/Login">Login</Link>
+                <Link to="/" className='navbar__item'>Home</Link>
+                <Link to="/TipoDeEventos" className='navbar__item'>Tipo Eventos</Link>
+                <Link to="/Eventos" className='navbar__item'>Eventos</Link>
+                <Link to="/Login" className='navbar__item'>Login</Link>
             </div>
         </nav>
     );
