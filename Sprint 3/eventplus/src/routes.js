@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import TestePage from './pages/TestePage/TestePage';
 
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer'
 const routes = () => {
     return (
         <div>
@@ -20,6 +21,7 @@ const routes = () => {
                     <Route element= {<LoginPage />} path='/Login'/>
                     <Route element= {<TestePage />} path='/Teste'/>
                 </Routes>
+                <Footer/>
             </BrowserRouter>
         </div>
     );

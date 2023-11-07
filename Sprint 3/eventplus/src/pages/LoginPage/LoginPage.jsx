@@ -1,11 +1,13 @@
 import React from 'react';
 import './LoginPage.css'
+import Title from '../../components/Title/Title';
+import MainContent from '../../components/MainContent/MainContent';
 
 const LoginPage = () => {
     return (
-        <div>
-            <h1>Pagina de Login</h1>
-        </div>
+        <MainContent>
+            <Title titleText="Página de Login" additionalClass="margem-acima" color=''/>
+        </MainContent>
     );
 };
 
