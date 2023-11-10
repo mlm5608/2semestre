@@ -7,15 +7,17 @@ import VisionSection from "../../components/VisionSection/VisionSection";
 import ContactSection from "../../components/ContactSection/ContactSection";
 import NextEvent from "../../components/NextEvent/NextEvent";
 import Container from "../../components/Container/Container";
-import axios from "axios";
+import api from '../../Services/Service'
 
 const HomePage = () => {
+  //Fake mock - api mocada
+  const [nextEvents, setNextEvents] = useState([]);
 
   useEffect(() => {
     // chamar a api
     async function getNextEvets() {
       try {
-        const promise = await axios.get(endereco)
+        const promise = await api.get("/Evento/ListarProximos")
 
         console.log(promise.data);
         setNextEvents(promise.data)
@@ -23,10 +25,8 @@ const HomePage = () => {
         alert("deu ruim aq")
       }
     }
+    getNextEvets();
   }, [])
-
-  //Fake mock - api mocada
-  const [nextEvents, setNextEvents] = useState([]);
 
   return (
     <MainContent>
@@ -39,10 +39,10 @@ const HomePage = () => {
             {nextEvents.map((e) => {
               return (
                 <NextEvent
-                  title={e.title}
-                  description={e.description}
-                  eventDate={e.data}
-                  idEvento={e.id}
+                  title={e.nomeEvento}
+                  description={e.descricao}
+                  eventDate={e.dataEvento}
+                  idEvento={e.idEvento}
                 />
               );
             })}
@@ -55,5 +55,4 @@ const HomePage = () => {
     </MainContent>
   );
 };
-
 export default HomePage;
