@@ -7,8 +7,8 @@ import { Tooltip } from 'react-tooltip'
 
 const NextEvent = ({ title, description, eventDate, idEvento }) => {
 
-    function conectar(idEvento) {
-        alert(`Conectando ao evento: ${idEvento}`)
+    function conectar(title) {
+        alert(`Conectando ao evento: ${title}`)
 
     }
 
@@ -28,7 +28,7 @@ const NextEvent = ({ title, description, eventDate, idEvento }) => {
 
             <p className='event-card__description'>{new Date(eventDate).toLocaleDateString()}</p>
 
-            <a onClick={() => { conectar(idEvento) }} href="" className='event-card__connect-link'>Conectar</a>
+            <a onClick={() => { conectar(title) }} href="" className='event-card__connect-link'>Conectar</a>
         </article>
     );
 };

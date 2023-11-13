@@ -22,7 +22,7 @@ const HomePage = () => {
         console.log(promise.data);
         setNextEvents(promise.data)
       } catch (error) {
-        alert("deu ruim aq")
+        console.log("deu ruim aq")
       }
     }
     getNextEvets();
