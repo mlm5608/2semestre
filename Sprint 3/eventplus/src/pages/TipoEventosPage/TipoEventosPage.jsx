@@ -8,13 +8,18 @@ import ImageIllustartor from '../../components/ImageIllustartor/ImageIllustartor
 import eventTypeImage from '../../assets/images/tipo-evento.svg'
 import { Button, Input } from '../../components/FormComponents/FormComponents';
 import api from '../../Services/Service'
-import Titulo from '../../components/Title/Title';
-
+import TableTp from './TableTp/TableTp';
 
 const TipoEventos = () => {
 
-    const [frmEdit, setFrmEdit] = useState(true)
+    const [frmEdit, setFrmEdit] = useState(false)
     const [title, setTitle] = useState("")
+    const [tipoEventos, setTipoEventos] = useState([
+        { idTipoEvento: "3498", titulo: "sal1" },
+        { idTipoEvento: "6789", titulo: "sal2" },
+        { idTipoEvento: "4567", titulo: "sal3" },
+    ]);//array
+
 
     async function handleSubmit(e) {
         //parar o submit do form
@@ -26,7 +31,7 @@ const TipoEventos = () => {
         }
         //chamar api
         try {
-            const retorno = await api.post("/TiposEvento", {titulo: title})
+            const retorno = await api.post("/TiposEvento", { titulo: title })
             console.log("Cadastrado com sucesso");
             console.log(retorno.data);
             setTitle("")
@@ -38,9 +43,19 @@ const TipoEventos = () => {
     function handleUpdate() {
         alert("bora atualizar")
     }
+    function showUpdateForm() {
+        alert("Form pronto")
+    }
+    function editActionAbort() {
+        alert("Editado!")
+    }
+    function handleDelete() {
+        alert("Xiiiiii morreu!")
+    }
 
     return (
         <MainContent>
+            {/* Cadastro tipo de eventos */}
             <section className='cadastro-evento-section'>
                 <Container>
                     <div className="cadastro-evento__box">
@@ -94,6 +109,7 @@ const TipoEventos = () => {
                                             id={"Button-Update"}
                                             name={"Button-Update"}
                                             additionalclass={"button-component--middle"}
+                                            manipulationFunction={() => { }}
                                         />
 
                                         <Button
@@ -102,7 +118,7 @@ const TipoEventos = () => {
                                             id={"Cancel-Button"}
                                             name={"Cancel-Button"}
                                             additionalclass={"button-component--middle"}
-                                            manipulationFunction={() => { setFrmEdit(false) }}
+                                            manipulationFunction={() => { }}
                                         />
                                     </div>
                                 </>
@@ -112,6 +128,20 @@ const TipoEventos = () => {
                             }
                         </form>
                     </div>
+                </Container>
+            </section>
+
+            {/* Listagem de eventos */}
+            <section className='lista-eventos-section'>
+                <Container>
+                    <Title titleText={"Lista Tipo de Eventos"} color="white" />
+
+                    <TableTp
+                        dados={tipoEventos}
+                        fnUpdate={showUpdateForm}
+                        fnDelete={handleDelete}
+                    />
+
                 </Container>
             </section>
         </MainContent>
