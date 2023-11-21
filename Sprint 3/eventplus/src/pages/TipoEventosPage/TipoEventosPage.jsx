@@ -9,6 +9,7 @@ import { Button, Input } from '../../components/FormComponents/FormComponents';
 import api from '../../Services/Service'
 import TableTp from './TableTp/TableTp';
 import Notification from '../../components/Notification/Notification';
+import Spinner from '../../components/Spinner/Spinner';
 
 const TipoEventos = () => {
 
@@ -16,24 +17,25 @@ const TipoEventos = () => {
     const [notifyUser, setNotifyUser] = useState({})
     const [title, setTitle] = useState("")
     const [tiposEventos, setTiposEventos] = useState([]);//array
-    const [idTipoEvento, setIdTipoEventos] = useState("")
+    const [idTipoEvento, setIdTipoEventos] = useState(null)
+    const [showSpinner, setShowSpinner] = useState(false)
 
     useEffect(() => {
         async function getTipoEventos() {
+            setShowSpinner(true)
             try {
                 const promise = await api.get("/TiposEvento")
-                
+
                 console.log(promise.data);
                 setTiposEventos(promise.data)
             } catch (error) {
                 console.log("deu ruim aq")
                 console.log(error);
             }
+            setShowSpinner(false)
         }
         getTipoEventos()
     }, [])
-
-
     async function handleSubmit(e) {
         //parar o submit do form
         e.preventDefault();
@@ -58,12 +60,38 @@ const TipoEventos = () => {
             textNote: `Cadastrado com sucesso!`,
             imgIcon: "success",
             imgAlt:
-              "Imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação ok.",
+                "Imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação ok.",
             showMessage: true,
-          });
+        });
+
+        const retornoGet = await api.get('/TiposEvento')
+        setTiposEventos(retornoGet.data)
     }
     async function handleUpdate(e) {
         e.preventDefault();
+
+        try {
+            const retorno = await api.put(`/TiposEvento/${idTipoEvento}`, {
+                titulo: title
+            })
+
+            const retornoGet = await api.get('/TiposEvento')
+            setTiposEventos(retornoGet.data)
+
+            editActionAbort()
+        } catch (error) {
+            console.log("deu ruim aqui");
+            console.log(error);
+        }
+
+        setNotifyUser({
+            titleNote: "Sucesso",
+            textNote: `Atualizado com sucesso!`,
+            imgIcon: "success",
+            imgAlt:
+                "Imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação ok.",
+            showMessage: true,
+        });
     }
     async function showUpdateForm(idTipoEvento) {
         setFrmEdit(true);
@@ -73,25 +101,40 @@ const TipoEventos = () => {
             setTitle(retorno.data.titulo)
             setIdTipoEventos(idTipoEvento)
         } catch (error) {
-            console.log("deu ruim aq");
+            console.log("deu ruim aqui");
+            console.log(error);
         }
     }
     function editActionAbort() {
         setFrmEdit(false)
         setTitle("")
+        setIdTipoEventos(null)
     }
-    function handleDelete(id) {
+    async function handleDelete(id) {
         try {
-            api.delete(`/TiposEvento/${id}`)
+            await api.delete(`/TiposEvento/${id}`)
+            const retornoGet = await api.get('/TiposEvento')
+            setTiposEventos(retornoGet.data)
         } catch (error) {
             console.log("deu ruim aq")
             console.log(error);
         }
+
+        setNotifyUser({
+            titleNote: "Sucesso",
+            textNote: `Deletado com sucesso!`,
+            imgIcon: "success",
+            imgAlt:
+                "Imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação ok.",
+            showMessage: true,
+        });
     }
 
     return (
         <MainContent>
             <Notification {...notifyUser} setNotifyUser={setNotifyUser} />
+             
+            {showSpinner ? <Spinner/> : null} 
             {/* Cadastro tipo de eventos */}
             <section className='cadastro-evento-section'>
                 <Container>
@@ -159,7 +202,7 @@ const TipoEventos = () => {
                                             id={"Cancel-Button"}
                                             name={"Cancel-Button"}
                                             additionalclass={"button-component--middle"}
-                                            manipulationFunction={() => {editActionAbort()}}
+                                            manipulationFunction={() => { editActionAbort() }}
                                         />
                                     </div>
                                 </>
