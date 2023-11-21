@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './TipoEventosPage.css'
 import Title from '../../components/Title/Title';
 import MainContent from '../../components/MainContent/MainContent';
@@ -9,16 +8,30 @@ import eventTypeImage from '../../assets/images/tipo-evento.svg'
 import { Button, Input } from '../../components/FormComponents/FormComponents';
 import api from '../../Services/Service'
 import TableTp from './TableTp/TableTp';
+import Notification from '../../components/Notification/Notification';
 
 const TipoEventos = () => {
 
     const [frmEdit, setFrmEdit] = useState(false)
+    const [notifyUser, setNotifyUser] = useState({})
     const [title, setTitle] = useState("")
-    const [tipoEventos, setTipoEventos] = useState([
-        { idTipoEvento: "3498", titulo: "sal1" },
-        { idTipoEvento: "6789", titulo: "sal2" },
-        { idTipoEvento: "4567", titulo: "sal3" },
-    ]);//array
+    const [tiposEventos, setTiposEventos] = useState([]);//array
+    const [idTipoEvento, setIdTipoEventos] = useState("")
+
+    useEffect(() => {
+        async function getTipoEventos() {
+            try {
+                const promise = await api.get("/TiposEvento")
+                
+                console.log(promise.data);
+                setTiposEventos(promise.data)
+            } catch (error) {
+                console.log("deu ruim aq")
+                console.log(error);
+            }
+        }
+        getTipoEventos()
+    }, [])
 
 
     async function handleSubmit(e) {
@@ -39,22 +52,46 @@ const TipoEventos = () => {
             console.log("deu ruim na api");
             console.log(error);
         }
+
+        setNotifyUser({
+            titleNote: "Sucesso",
+            textNote: `Cadastrado com sucesso!`,
+            imgIcon: "success",
+            imgAlt:
+              "Imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação ok.",
+            showMessage: true,
+          });
     }
-    function handleUpdate() {
-        alert("bora atualizar")
+    async function handleUpdate(e) {
+        e.preventDefault();
     }
-    function showUpdateForm() {
-        alert("Form pronto")
+    async function showUpdateForm(idTipoEvento) {
+        setFrmEdit(true);
+        console.log(idTipoEvento);
+        try {
+            const retorno = await api.get(`/TiposEvento/${idTipoEvento}`)
+            setTitle(retorno.data.titulo)
+            setIdTipoEventos(idTipoEvento)
+        } catch (error) {
+            console.log("deu ruim aq");
+        }
     }
     function editActionAbort() {
-        alert("Editado!")
+        setFrmEdit(false)
+        setTitle("")
     }
-    function handleDelete() {
-        alert("Xiiiiii morreu!")
+    function handleDelete(id) {
+        try {
+            api.delete(`/TiposEvento/${id}`)
+        } catch (error) {
+            console.log("deu ruim aq")
+            console.log(error);
+        }
     }
 
     return (
         <MainContent>
+            <Notification {...notifyUser} setNotifyUser={setNotifyUser} />
             {/* Cadastro tipo de eventos */}
             <section className='cadastro-evento-section'>
                 <Container>
@@ -99,7 +136,12 @@ const TipoEventos = () => {
                                         name={"Titulo"}
                                         placeholder={"Titulo"}
                                         required={""}
-                                        value={""}
+                                        value={title}
+                                        manipulationFunction={
+                                            (e) => {
+                                                setTitle(e.target.value)
+                                            }
+                                        }
                                     />
 
                                     <div className='buttons-editbox'>
@@ -109,7 +151,6 @@ const TipoEventos = () => {
                                             id={"Button-Update"}
                                             name={"Button-Update"}
                                             additionalclass={"button-component--middle"}
-                                            manipulationFunction={() => { }}
                                         />
 
                                         <Button
@@ -118,7 +159,7 @@ const TipoEventos = () => {
                                             id={"Cancel-Button"}
                                             name={"Cancel-Button"}
                                             additionalclass={"button-component--middle"}
-                                            manipulationFunction={() => { }}
+                                            manipulationFunction={() => {editActionAbort()}}
                                         />
                                     </div>
                                 </>
@@ -137,7 +178,7 @@ const TipoEventos = () => {
                     <Title titleText={"Lista Tipo de Eventos"} color="white" />
 
                     <TableTp
-                        dados={tipoEventos}
+                        dados={tiposEventos}
                         fnUpdate={showUpdateForm}
                         fnDelete={handleDelete}
                     />

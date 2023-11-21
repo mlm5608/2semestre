@@ -15,23 +15,23 @@ const TableTp = ({ dados, fnUpdate, fnDelete }) => {
             </thead>
 
             <tbody>
-                {dados.map((e => {
+                {dados.map((tp) => {
                     return (
                         <tr className="table-data__head-row">
                             <td className="table-data__data table-data__data--big">
-                                {e.titulo}
+                                {tp.titulo}
                             </td>
 
                             <td className="table-data__data table-data__data--little">
-                                <img className="table-data__icon" src={editPen} alt="Imagem de caneta, para editar cadastro" onClick={() => { fnUpdate() }} />
+                                <img className="table-data__icon" src={editPen} alt="Imagem de caneta, para editar cadastro" onClick={() => { fnUpdate(tp.idTipoEvento) }} />
                             </td>
 
                             <td className="table-data__data table-data__data--little">
-                                <img className="table-data__icon" src={trashDelete} alt="Imagem de Lata de lixo, para deletar cadastro" onClick={() => { fnDelete() }} />
+                                <img className="table-data__icon" src={trashDelete} alt="Imagem de Lata de lixo, para deletar cadastro" onClick={() => { fnDelete(tp.idTipoEvento) }} />
                             </td>
                         </tr>
                     );
-                }))}
+                })}
             </tbody>
         </table>
     );
