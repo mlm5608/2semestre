@@ -13,7 +13,7 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const TipoEventos = () => {
 
-    const [frmEdit, setFrmEdit] = useState(false)
+    const [frmEdit, setFrmEdit] = useState(true)
     const [notifyUser, setNotifyUser] = useState({})
     const [title, setTitle] = useState("")
     const [tiposEventos, setTiposEventos] = useState([]);//array
@@ -25,8 +25,6 @@ const TipoEventos = () => {
             setShowSpinner(true)
             try {
                 const promise = await api.get("/TiposEvento")
-
-                console.log(promise.data);
                 setTiposEventos(promise.data)
             } catch (error) {
                 console.log("deu ruim aq")
@@ -48,7 +46,6 @@ const TipoEventos = () => {
         try {
             const retorno = await api.post("/TiposEvento", { titulo: title })
             console.log("Cadastrado com sucesso");
-            console.log(retorno.data);
             setTitle("")
         } catch (error) {
             console.log("deu ruim na api");
@@ -95,7 +92,6 @@ const TipoEventos = () => {
     }
     async function showUpdateForm(idTipoEvento) {
         setFrmEdit(true);
-        console.log(idTipoEvento);
         try {
             const retorno = await api.get(`/TiposEvento/${idTipoEvento}`)
             setTitle(retorno.data.titulo)
@@ -143,7 +139,6 @@ const TipoEventos = () => {
                         <ImageIllustartor
                             imageRender={eventTypeImage}
                             alterText={""}
-
                         />
 
                         <form onSubmit={frmEdit ? handleUpdate : handleSubmit} className="ftipo-evento">
