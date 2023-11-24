@@ -38,6 +38,7 @@ const TipoEventos = () => {
         //parar o submit do form
         e.preventDefault();
         //validar pelo menos 3 caracteres
+        setShowSpinner(true)
         if (title.trim().length < 3) {
             alert("O título precisa ter mais de 3 letras!")
             return
@@ -48,9 +49,9 @@ const TipoEventos = () => {
             console.log("Cadastrado com sucesso");
             setTitle("")
         } catch (error) {
-            console.log("deu ruim na api");
-            console.log(error);
+            
         }
+        setShowSpinner(false)
 
         setNotifyUser({
             titleNote: "Sucesso",
@@ -66,7 +67,7 @@ const TipoEventos = () => {
     }
     async function handleUpdate(e) {
         e.preventDefault();
-
+        setShowSpinner(true)
         try {
             const retorno = await api.put(`/TiposEvento/${idTipoEvento}`, {
                 titulo: title
@@ -80,6 +81,7 @@ const TipoEventos = () => {
             console.log("deu ruim aqui");
             console.log(error);
         }
+        setShowSpinner(false)
 
         setNotifyUser({
             titleNote: "Sucesso",
@@ -92,6 +94,7 @@ const TipoEventos = () => {
     }
     async function showUpdateForm(idTipoEvento) {
         setFrmEdit(true);
+        setShowSpinner(true)
         try {
             const retorno = await api.get(`/TiposEvento/${idTipoEvento}`)
             setTitle(retorno.data.titulo)
@@ -100,6 +103,7 @@ const TipoEventos = () => {
             console.log("deu ruim aqui");
             console.log(error);
         }
+        setShowSpinner(false)
     }
     function editActionAbort() {
         setFrmEdit(false)
@@ -107,6 +111,7 @@ const TipoEventos = () => {
         setIdTipoEventos(null)
     }
     async function handleDelete(id) {
+        setShowSpinner(true)
         try {
             await api.delete(`/TiposEvento/${id}`)
             const retornoGet = await api.get('/TiposEvento')
@@ -115,6 +120,7 @@ const TipoEventos = () => {
             console.log("deu ruim aq")
             console.log(error);
         }
+        setShowSpinner(false)
 
         setNotifyUser({
             titleNote: "Sucesso",

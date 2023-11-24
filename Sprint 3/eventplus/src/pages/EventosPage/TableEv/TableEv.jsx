@@ -1,6 +1,7 @@
 import "./TableEv.css"
 import editPen from '../../../assets/images/edit-pen.svg'
 import trashDelete from '../../../assets/images/trash-delete.svg'
+import { Tooltip } from "react-tooltip";
 
 const TableEv = ({ dados, fnUpdate, fnDelete }) => {
     return (
@@ -24,13 +25,23 @@ const TableEv = ({ dados, fnUpdate, fnDelete }) => {
                                 {ev.nomeEvento}
                             </td>
 
-                            <td className="table-data__data table-data__data--big">
-                                {ev.descricao}
+                            <td className="table-data__data table-data__data--big" >
+                                <p
+                                    data-tooltip-id={ev.idEvento} data-tooltip-content={ev.descricao} data-tooltip-place="top"
+                                >
+                                    <Tooltip id={ev.idEvento} className="tooltip" />{ev.descricao.substr(0, 10)}...
+                                </p>
                             </td>
 
                             <td className="table-data__data table-data__data--big">
-                                {ev.tiposEvento.titulo}
+                                <p
+                                    data-tooltip-id={ev.idEvento} data-tooltip-content={ev.tiposEvento.titulo} data-tooltip-place="top"
+                                >
+                                    <Tooltip id={ev.idEvento} className="tooltip" />{ev.tiposEvento.titulo.substr(0, 10)}...
+                                </p>
+                                {/* {ev.tiposEvento.titulo} */}
                             </td>
+
                             <td className="table-data__data table-data__data--big">
                                 {new Date(ev.dataEvento).toLocaleDateString()}
                             </td>

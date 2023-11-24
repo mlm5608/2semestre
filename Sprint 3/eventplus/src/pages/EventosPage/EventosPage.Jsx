@@ -8,6 +8,7 @@ import eventImage from '../../assets/images/evento.svg'
 import { Button, Input, Select } from '../../components/FormComponents/FormComponents';
 import api from '../../Services/Service'
 import TableEv from './TableEv/TableEv';
+import { viewToDateFormatDb } from '../../Utils/StringFunction';
 import Notification from '../../components/Notification/Notification';
 import Spinner from '../../components/Spinner/Spinner';
 
@@ -15,18 +16,20 @@ import Spinner from '../../components/Spinner/Spinner';
 const EventosPage = () => {
 
     const [frmEdit, setFrmEdit] = useState(false)
-    const [eventos, setEventos] = useState([])//array
-    const [notifyUser, setNotifyUser] = useState({})
+    const [idEvento, setIdEvento] = useState("")
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [eventType, setEventType] = useState("")//função cadastrar (objeto)
     const [date, setDate] = useState("")
     const [instituicao, setInstituicao] = useState("")
     const [tiposDeEventos, setTiposDeEventos] = useState([])//Para gerar o select (array)
-    const [idEvento, setIdEvento] = useState("")
+    const [eventos, setEventos] = useState([])//array
+    const [notifyUser, setNotifyUser] = useState({})
+    const [showSpinner, setShowSpinner] = useState(false)
 
     useEffect(() => {
         async function getEvents() {
+            setShowSpinner(true)
             try {
                 const promise = await api.get("/Evento")
                 const inst = await api.get("/Instituicao")
@@ -57,24 +60,35 @@ const EventosPage = () => {
                     showMessage: true,
                 });
             }
+            setShowSpinner(false)
         }
         getEvents()
     }, [])
     async function showUpdateForm(idEvent) {
         setFrmEdit(true);
+        setShowSpinner(true)
         try {
             const retorno = await api.get(`/Evento/${idEvent}`)
             setName(retorno.data.nomeEvento)
             setDescription(retorno.data.descricao)
             setEventType(retorno.data.idTipoEvento)
-            setDate(retorno.data.dataEvento)
+            setDate(viewToDateFormatDb(retorno.data.dataEvento))
             setIdEvento(idEvent)
         } catch (error) {
-            console.log("deu ruim aqui");
+            setNotifyUser({
+                titleNote: "Erro!",
+                textNote: `Ocorreu algo de errado, verifique sua conexão internet!`,
+                imgIcon: "danger",
+                imgAlt:
+                    "",
+                showMessage: true,
+            });
             console.log(error);
         }
+        setShowSpinner(false)
     }
     async function handleDelete(id) {
+        setShowSpinner(true)
         try {
             await api.delete(`/Evento/${id}`)
             const retornoGet = await api.get('/Evento')
@@ -89,7 +103,7 @@ const EventosPage = () => {
                 showMessage: true,
             });
         }
-
+        setShowSpinner(false)
         setNotifyUser({
             titleNote: "Sucesso",
             textNote: `Deletado com sucesso!`,
@@ -99,8 +113,42 @@ const EventosPage = () => {
             showMessage: true,
         });
     }
-    function handleUpdate() {
+    async function handleUpdate(e) {
+        e.preventDefault();
+        setShowSpinner(true)
+        try {
+            const retorno = await api.put(`/Evento/${idEvento}`, {
+                nomeEvento: name, 
+                descricao: description, 
+                idTipoEvento: eventType, 
+                dataEvento: date, 
+                idInstituicao: instituicao
+            })
 
+            const retornoGet = await api.get('/Evento')
+            setEventos(retornoGet.data)
+
+            editActionAbort()
+        } catch (error) {
+            setNotifyUser({
+                titleNote: "Erro!",
+                textNote: `Ocorreu algo de errado ao atualizar, verifique sua conexão internet!`,
+                imgIcon: "warning",
+                imgAlt:
+                    "",
+                showMessage: true,
+            });
+        }
+        setShowSpinner(false)
+
+        setNotifyUser({
+            titleNote: "Sucesso",
+            textNote: `Atualizado com sucesso!`,
+            imgIcon: "success",
+            imgAlt:
+                "Imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação ok.",
+            showMessage: true,
+        });
     }
     async function handleSubmit(e) {
         e.preventDefault();
@@ -109,15 +157,50 @@ const EventosPage = () => {
             alert("O título precisa ter mais de 3 letras!")
         }
 
+        setShowSpinner(true)
         try {
-            const retorno = await api.post("/Evento", { nomeEvento: name, descricao: description, idTipoEvento: eventType, dataEvento: date, idInstituicao: instituicao })
+            const retorno = await api.post("/Evento/", { nomeEvento: name, descricao: description, idTipoEvento: eventType, dataEvento: date, idInstituicao: instituicao })
 
         } catch (error) {
+            setNotifyUser({
+                titleNote: "Erro!",
+                textNote: `Ocorreu algo de errado ao cadastrar, verifique sua conexão internet!`,
+                imgIcon: "warning",
+                imgAlt:
+                    "",
+                showMessage: true,
+            });
+        }
+        setShowSpinner(false)
+
+        setNotifyUser({
+            titleNote: "Sucesso",
+            textNote: `Atualizado com sucesso!`,
+            imgIcon: "success",
+            imgAlt:
+                "Imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação ok.",
+            showMessage: true,
+        });
+    }
+    async function editActionAbort() {
+        setFrmEdit(false);
+        try {
+            setName("")
+            setDescription("")
+            setEventType("")
+            setDate("")
+            setIdEvento("")
+        } catch (error) {
+            setNotifyUser({
+                titleNote: "Erro!",
+                textNote: `Ocorreu algo de errado, verifique sua conexão internet!`,
+                imgIcon: "danger",
+                imgAlt:
+                    "",
+                showMessage: true,
+            });
             console.log(error);
         }
-    }
-    function editActionAbort() {
-
     }
 
 
@@ -126,6 +209,7 @@ const EventosPage = () => {
     return (
         <MainContent>
             <Notification {...notifyUser} setNotifyUser={setNotifyUser} />
+            {showSpinner ? <Spinner/> : null}
 
             <section className='cadastro-evento-section'>
                 <Container>
@@ -178,6 +262,7 @@ const EventosPage = () => {
                                         manipulationFunction={(p) => {
                                             setEventType(p.target.value)
                                         }}
+                                        defaultValue={eventType}
                                     />
 
                                     {/* Input 4 ************************ */}
@@ -242,7 +327,7 @@ const EventosPage = () => {
                                         manipulationFunction={(p) => {
                                             setEventType(p.target.value)
                                         }}
-                                        defaultValue=""
+                                        defaultValue={eventType}
                                     />
 
                                     {/* Input 4 ************************ */}
