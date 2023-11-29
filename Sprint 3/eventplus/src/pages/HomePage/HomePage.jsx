@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./HomePage.css";
 import Title from "../../components/Title/Title";
 import MainContent from "../../components/MainContent/MainContent";
@@ -8,10 +8,14 @@ import ContactSection from "../../components/ContactSection/ContactSection";
 import NextEvent from "../../components/NextEvent/NextEvent";
 import Container from "../../components/Container/Container";
 import api from '../../Services/Service'
+import { UserContext } from "../../Context/AuthContext";
 
 const HomePage = () => {
   //Fake mock - api mocada
   const [nextEvents, setNextEvents] = useState([]);
+
+  const {userData} = useContext(UserContext)
+  console.log(userData);
 
   useEffect(() => {
     // chamar a api
