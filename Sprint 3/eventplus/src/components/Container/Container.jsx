@@ -1,7 +1,7 @@
-import './Container.css'
 import React from 'react';
+import './Container.css';
 
-const container = ({children}) => {
+const Container = ( { children } ) => {
     return (
         <div className='container'>
             {children}
@@ -9,4 +9,4 @@ const container = ({children}) => {
     );
 };
 
-export default container;
+export default Container;

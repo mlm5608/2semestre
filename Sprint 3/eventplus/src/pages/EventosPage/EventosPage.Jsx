@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './EventosPage.css'
-import Title from '../../components/Title/Title';
-import MainContent from '../../components/MainContent/MainContent';
-import Container from '../../components/Container/Container'
-import ImageIllustartor from '../../components/ImageIllustartor/ImageIllustartor';
+import Title from '../../Components/Title/Title';
+import MainContent from '../../Components/MainContent/MainContent';
+import Container from '../../Components/Container/Container'
+import ImageIllustartor from '../../Components/ImageIllustrator/ImageIllustrator';
 import eventImage from '../../assets/images/evento.svg'
-import { Button, Input, Select } from '../../components/FormComponents/FormComponents';
+import { Button, Input, Select } from '../../Components/FormComponents/FormComponents';
 import api from '../../Services/Service'
 import TableEv from './TableEv/TableEv';
-import { viewToDateFormatDb } from '../../Utils/StringFunction';
-import Notification from '../../components/Notification/Notification';
-import Spinner from '../../components/Spinner/Spinner';
+import { viewToDateFormatDb } from '../../Utils/stringFunction';
+import Notification from '../../Components/Notification/Notification';
+import Spinner from '../../Components/Spinner/Spinner';
 
 //*************************************************************************************
 const EventosPage = () => {

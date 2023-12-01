@@ -1,15 +1,16 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const TestePage = () => {
 
-  const [count, setCount] = useState(10)
-  const [calculation, setCalculation] = useState(10)
+  const [count, setCount] = useState(10);
+  const [calculation, setCalculation] = useState(10);//20
 
+  //roda quando o componente for carregado
+  // e também quando o count for atualizado
   useEffect(() => {
-    setCalculation(count * 2)
-  }, []);
+    setCalculation(count * 2);
+    console.log('Rodei');
+  },[count]);
 
   return (
     <div>

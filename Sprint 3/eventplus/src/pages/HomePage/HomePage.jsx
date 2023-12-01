@@ -1,55 +1,63 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./HomePage.css";
-import Title from "../../components/Title/Title";
-import MainContent from "../../components/MainContent/MainContent";
-import Banner from "../../components/Banner/Banner";
-import VisionSection from "../../components/VisionSection/VisionSection";
-import ContactSection from "../../components/ContactSection/ContactSection";
-import NextEvent from "../../components/NextEvent/NextEvent";
-import Container from "../../components/Container/Container";
-import api from '../../Services/Service'
-import { UserContext } from "../../Context/AuthContext";
+import './HomePage.css'
+import MainContent from "../../Components/MainContent/MainContent";
+import Banner from "../../Components/Banner/Banner";
+import VisionSection from "../../Components/VisionSection/VisionSection";
+import ContactSection from "../../Components/ContactSection/ContactSection";
+import NextEvent from "../../Components/NextEvent/NextEvent";
+import Title from "../../Components/Title/Title";
+import Container from "../../Components/Container/Container";
+import api from "../../Services/Service";
+import { UserContext } from "../../context/AuthContext";
 
 const HomePage = () => {
-  //Fake mock - api mocada
-  const [nextEvents, setNextEvents] = useState([]);
-
   const {userData} = useContext(UserContext)
+
+  console.log("DADOS GLOBAIS DO USUÁRIO");
   console.log(userData);
+    useEffect(()=> {
+      // chamar a api
+      async function getProximosEventos() {
+        try {
+          const promise = await api.get("/Evento/ListarProximos");
 
-  useEffect(() => {
-    // chamar a api
-    async function getNextEvets() {
-      try {
-        const promise = await api.get("/Evento/ListarProximos")
+          setNextEvents(promise.data);
 
-        console.log(promise.data);
-        setNextEvents(promise.data)
-      } catch (error) {
-        console.log("deu ruim aq")
+        } catch (error) {
+          console.log('Deu ruim na api');
+        }
       }
-    }
-    getNextEvets();
-  }, [])
+      getProximosEventos();
+       
+    }, []);
+
+  // fake mock - api mocada
+  const [nextEvents, setNextEvents] = useState([]);
 
   return (
     <MainContent>
       <Banner />
 
+      {/* PRÓXIMOS EVENTOS */}
       <section className="proximos-eventos">
         <Container>
-          <Title titleText="Próximos Eventos" additionalClass="margem-acima" />
+          <Title titleText={"Próximos Eventos"} />
+
           <div className="events-box">
-            {nextEvents.map((e) => {
-              return (
-                <NextEvent
-                  title={e.nomeEvento}
-                  description={e.descricao}
-                  eventDate={e.dataEvento}
-                  idEvento={e.idEvento}
-                />
-              );
-            })}
+            
+            {
+              nextEvents.map((e) => {
+                return(
+                    <NextEvent
+                      title={e.nomeEvento}
+                      description={ e.descricao}
+                      eventDate={e.dataEvento}
+                      idEvento={e.idEvento}
+                    />
+                );
+              })
+            }
+            
           </div>
         </Container>
       </section>
@@ -59,4 +67,5 @@ const HomePage = () => {
     </MainContent>
   );
 };
+
 export default HomePage;

@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: Poppins-Regular;
     src: url(../../assets/fonts/Poppins/Poppins-Regular.ttf);
@@ -11,7 +12,7 @@
 
 .tooltip {
     color: #fff !important;
-    background-color: #000000 !important;
+    background-color: #B51D44 !important;
   }
 
 .event-card {
@@ -24,10 +25,6 @@
     border: 1px solid var(--color-blue-red);
     border-radius: 5px;
     overflow: auto;
-}
-
-.event-card::-webkit-scrollbar{
-  width: 0px;
 }
 
 .event-card__title {
