@@ -28,7 +28,7 @@ function Notification({
       setTimeout(() => {
         hide();
         clearTimeout(initTimeout);
-      }, 5000);
+      }, 10000);
     };
 
     initTimeout();

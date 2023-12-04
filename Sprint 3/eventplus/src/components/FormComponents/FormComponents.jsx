@@ -47,11 +47,6 @@ export const Button = ({
   );
 };
 
-// const dados = [
-//   { value: "12349", text: "Vestuário Masculino" },
-//   { value: "09876", text: "Vestuário Feminino" },
-// ];
-
 export const Select = ({ 
     dados = [],
     id,

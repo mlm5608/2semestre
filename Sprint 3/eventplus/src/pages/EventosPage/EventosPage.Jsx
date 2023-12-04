@@ -46,6 +46,7 @@ const EventosPage = () => {
                 });
 
                 setTiposDeEventos(arrayMod)
+                console.log(tiposDeEventos);
                 setEventos(promise.data)
                 setInstituicao(inst.data[0].idInstituicao)
 
@@ -160,7 +161,8 @@ const EventosPage = () => {
         setShowSpinner(true)
         try {
             const retorno = await api.post("/Evento/", { nomeEvento: name, descricao: description, idTipoEvento: eventType, dataEvento: date, idInstituicao: instituicao })
-
+            const retornoGet = await api.get('/Evento')
+            setEventos(retornoGet.data)
         } catch (error) {
             setNotifyUser({
                 titleNote: "Erro!",
@@ -175,7 +177,7 @@ const EventosPage = () => {
 
         setNotifyUser({
             titleNote: "Sucesso",
-            textNote: `Atualizado com sucesso!`,
+            textNote: `Cadastrado com sucesso!`,
             imgIcon: "success",
             imgAlt:
                 "Imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação ok.",
@@ -255,7 +257,7 @@ const EventosPage = () => {
                                     {/* Input 3 ************************ */}
 
                                     <Select
-                                        options={tiposDeEventos}
+                                        dados={tiposDeEventos}
                                         id={"TipoEvento"}
                                         name={"TipoEvento"}
                                         required={"required"}
@@ -281,7 +283,7 @@ const EventosPage = () => {
                                     />
 
                                     <Button
-                                        text={"Cadastrar"}
+                                        textButton={"Cadastrar"}
                                         type={"submit"}
                                         id={"Button"}
                                         name={"Button"}
@@ -320,7 +322,7 @@ const EventosPage = () => {
                                     {/* Input 3 ************************ */}
 
                                     <Select
-                                        options={tiposDeEventos}
+                                        dados={tiposDeEventos}
                                         id={"TipoEvento"}
                                         name={"TipoEvento"}
                                         required={"required"}
@@ -347,7 +349,7 @@ const EventosPage = () => {
 
                                     <div className='buttons-editbox'>
                                         <Button
-                                            text={"Atualizar"}
+                                            textButton={"Atualizar"}
                                             type={"submit"}
                                             id={"Button-Update"}
                                             name={"Button-Update"}
@@ -355,7 +357,7 @@ const EventosPage = () => {
                                         />
 
                                         <Button
-                                            text={"Cancelar"}
+                                            textButton={"Cancelar"}
                                             type={"cancel"}
                                             id={"Cancel-Button"}
                                             name={"Cancel-Button"}
