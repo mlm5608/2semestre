@@ -38,16 +38,20 @@ const EventosAlunoPage = () => {
       try {
         if (tipoEvento === '1') {
           const promise = await api.get("/Evento")
-          setEventos(promise.data)
+          const promiseEvents = await api.get(`/PresencasEvento/ListarMinhas/${userData.userId}`);
+          const dadosMarcados =  verificaPresenca(promise.data, promiseEvents.data)
+
+          setEventos(dadosMarcados)
         }
         else if (tipoEvento === '2') {
           let arrEventos= [];
           const promise = await api.get(`/PresencasEvento/ListarMinhas/${userData.userId}`);
 
           promise.data.forEach((e) => {
-              arrEventos.push(e.evento)
+              arrEventos.push({...e.evento, situacao : e.situacao})
           });
 
+          console.log(promise.data);
           setEventos(arrEventos)
         }
         else {
@@ -75,7 +79,22 @@ const EventosAlunoPage = () => {
       setShowSpinner(false)
     }
     loadEventsType();
-  }, [tipoEvento]);
+  }, [tipoEvento, userData.userId]);
+
+  const verificaPresenca = (arrAllEvents, eventsUser) => {
+    for (let x = 0; x < arrAllEvents.length; x++) {
+
+      for (let i = 0; i < eventsUser.length; i++) {
+
+        if (arrAllEvents[x].idEvento === eventsUser[i].idEvento) {
+          arrAllEvents[x].situacao = true;
+
+          break;
+        }
+      }
+    }
+    return arrAllEvents;
+  }
 
   // toggle meus eventos ou todos os eventos
   function myEvents(tpEvent) {
