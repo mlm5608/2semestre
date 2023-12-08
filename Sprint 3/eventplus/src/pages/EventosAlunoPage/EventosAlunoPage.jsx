@@ -32,54 +32,58 @@ const EventosAlunoPage = () => {
   const { userData, setUserData } = useContext(UserContext);
 
   useEffect(() => {
-    async function loadEventsType() {
-      // trazer todos os eventos
-      setShowSpinner(true)
-      try {
-        if (tipoEvento === '1') {
-          const promise = await api.get("/Evento")
-          const promiseEvents = await api.get(`/PresencasEvento/ListarMinhas/${userData.userId}`);
-          const dadosMarcados =  verificaPresenca(promise.data, promiseEvents.data)
+    loadEventsType();
+  }, [tipoEvento, userData.userId]);
 
-          setEventos(dadosMarcados)
-        }
-        else if (tipoEvento === '2') {
-          let arrEventos= [];
-          const promise = await api.get(`/PresencasEvento/ListarMinhas/${userData.userId}`);
+  async function loadEventsType() {
+    // trazer todos os eventos
+    setShowSpinner(true)
+    try {
+      if (tipoEvento === '1') {
+        const promise = await api.get("/Evento")
+        const promiseEvents = await api.get(`/PresencasEvento/ListarMinhas/${userData.userId}`);
+        const dadosMarcados = await verificaPresenca(promise.data, promiseEvents.data)
 
-          promise.data.forEach((e) => {
-              arrEventos.push({...e.evento, situacao : e.situacao})
-          });
+        console.clear();
+        console.log(dadosMarcados);
+        setEventos(dadosMarcados)
+      }
+      else if (tipoEvento === '2') {
+        let arrEventos = [];
+        const promise = await api.get(`/PresencasEvento/ListarMinhas/${userData.userId}`);
 
-          console.log(promise.data);
-          setEventos(arrEventos)
-        }
-        else {
-          setEventos([])
-          setNotifyUser({
-            titleNote: "Erro!",
-            textNote: `Selecione uma opção válida`,
-            imgIcon: "warning",
-            imgAlt:
-              "",
-            showMessage: true,
-          });
-        };
-      } catch (error) {
+        promise.data.forEach((e) => {
+          arrEventos.push({ ...e.evento, situacao: e.situacao, idPresencaEvento: e.idPresencaEvento })
+        });
+
+        console.log(promise.data);
+        setEventos(arrEventos)
+      }
+      else {
+        setEventos([])
         setNotifyUser({
           titleNote: "Erro!",
-          textNote: `Ocorreu algo de errado, verifique sua internet!`,
-          imgIcon: "danger",
+          textNote: `Selecione uma opção válida`,
+          imgIcon: "warning",
           imgAlt:
             "",
           showMessage: true,
         });
-      }
-
+      };
       setShowSpinner(false)
+      return;
+    } catch (error) {
+      setNotifyUser({
+        titleNote: "Erro!",
+        textNote: `Ocorreu algo de errado, verifique sua internet!`,
+        imgIcon: "danger",
+        imgAlt:
+          "",
+        showMessage: true,
+      });
     }
-    loadEventsType();
-  }, [tipoEvento, userData.userId]);
+    setShowSpinner(false)
+  }
 
   const verificaPresenca = (arrAllEvents, eventsUser) => {
     for (let x = 0; x < arrAllEvents.length; x++) {
@@ -88,7 +92,7 @@ const EventosAlunoPage = () => {
 
         if (arrAllEvents[x].idEvento === eventsUser[i].idEvento) {
           arrAllEvents[x].situacao = true;
-
+          arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento
           break;
         }
       }
@@ -101,8 +105,22 @@ const EventosAlunoPage = () => {
     setTipoEvento(tpEvent);
   }
 
-  async function loadMyComentary(idComentary) {
-    return "????";
+  async function loadMyComentary(idEvent) {
+    // alert("é noix")
+    try {
+      const retorno = await api.get("/ComentarioEvento/BuscarPorIdUsuario", {
+        idUsuario: userData.userId,
+        idEvento: idEvent,
+      })
+
+      console.log(retorno);
+    } catch (error) {
+      
+    }
+  }
+
+  async function postMyComentary(description, idEvent) {
+    
   }
 
   const showHideModal = () => {
@@ -113,16 +131,80 @@ const EventosAlunoPage = () => {
     alert("Remover o comentário");
   };
 
-  function handleConnect() {
-    alert("Desenvolver a função conectar evento");
+  async function handleConnect(idEvent, whatTheFunction /*connect */, idPresencaEvento = null) {
+    setShowSpinner(true)
+    if (whatTheFunction === 'conect' /* !connect*/) {
+      try {
+        const promise = await api.post('/PresencasEvento', {
+          situacao: true,
+          idUsuario: userData.userId,
+          idEvento: idEvent,
+          idPresencaEveto: idPresencaEvento
+        })
+
+        if (promise.status === 201) {
+          loadEventsType()
+
+          setNotifyUser({
+            titleNote: "Sucesso!",
+            textNote: `Sua presenca foi confirmada, Bom evento!`,
+            imgIcon: "success",
+            imgAlt:
+              "",
+            showMessage: true,
+          });
+        }
+        return;
+      } catch (error) {
+        setNotifyUser({
+          titleNote: "Erro!",
+          textNote: `Náo foi possivel Cadastrar, verifique sua internet!`,
+          imgIcon: "danger",
+          imgAlt:
+            "",
+          showMessage: true,
+        });
+      }
+      setShowSpinner(false)
+      return;
+    }
+    setShowSpinner(true)
+    try {
+      const promiseDelete = await api.delete(`/PresencasEvento/` + idPresencaEvento)
+
+      if (promiseDelete.status === 204) {
+        loadEventsType()
+
+        setNotifyUser({
+          titleNote: "Sucesso!",
+          textNote: `Sua presenca foi desconfirmada, Bom descanso!`,
+          imgIcon: "success",
+          imgAlt:
+            "",
+          showMessage: true,
+        });
+      }
+      return;
+    } catch (error) {
+      setNotifyUser({
+        titleNote: "Erro!",
+        textNote: `Náo foi possivel deletar o cadastro, verifique sua internet!`,
+        imgIcon: "danger",
+        imgAlt:
+          "",
+        showMessage: true,
+      });
+    }
+    setShowSpinner(false)
   }
+
   return (
     <>
       <MainContent>
         <Notification {...notifyUser} setNotifyUser={setNotifyUser} />
         {showSpinner ? <Spinner /> : null}
         <Container>
-          <Title titleText={"Eventos"} className="custom-title" />
+          <Title titleText={"Eventos"} additionalClass="custom-title" />
 
           <Select
             id="id-tipo-evento"
@@ -151,10 +233,12 @@ const EventosAlunoPage = () => {
           userId={userData.userId}
           showHideModal={showHideModal}
           fnDelete={commentaryRemove}
+          fnGet={loadMyComentary()}
+          fnPost={postMyComentary}
         />
       ) : null}
     </>
   );
-};
+}
 
 export default EventosAlunoPage;

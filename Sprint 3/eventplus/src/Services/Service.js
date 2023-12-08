@@ -2,10 +2,10 @@ import axios from "axios";
 
 const apiPort = "5000";
 const localApi = `http://localhost:${apiPort}/api`;
-const externalApi = null;
+const externalApi = "https://eventapiwebmiguel.azurewebsites.net/api";
 
 const api = axios.create({
-    baseURL : localApi
+    baseURL : externalApi
 });
 
 

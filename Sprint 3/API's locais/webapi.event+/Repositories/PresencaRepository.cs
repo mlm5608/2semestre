@@ -101,7 +101,7 @@ namespace webapi.event_.Repositories
         {
             try
             {
-                return _context.PresencasEvento.ToList();
+                return _context.PresencasEvento.OrderBy(e => e.Evento.DataEvento).ToList();
             }
             catch (Exception)
             {
@@ -133,7 +133,7 @@ namespace webapi.event_.Repositories
                         }
                     }
 
-                }).Where(p => p.IdUsuario == id).ToList();
+                }).Where(p => p.IdUsuario == id).OrderBy(e => e.Evento!.DataEvento).ToList();
         }
     }
 }
