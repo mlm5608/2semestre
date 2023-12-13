@@ -10,6 +10,10 @@ namespace webapi.event_.Interfaces
 
         List<ComentariosEvento> ListarTrue();
 
+        List<ComentariosEvento> ListarPorIdEvento(Guid id);
+
+        List<ComentariosEvento> ListarPorIdEventoTrue(Guid id);
+
         ComentariosEvento BuscarPorId(Guid id);
         ComentariosEvento BuscarPorIdUsuario(Guid idUsuario, Guid idEvento);
     }

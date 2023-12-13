@@ -157,5 +157,31 @@ namespace webapi.event_.Controllers{
                 return BadRequest(e.Message) /* StatusCode(204)*/;
             }
         }
+
+        [HttpGet("/ListarPeloIdEvento/{id}")]
+        public IActionResult GetByIdEvent(Guid id) 
+        {
+            try
+            {
+                return Ok(_comentarioEventoRepository.ListarPorIdEvento(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("/ListarSomenteExibePeloIdEvento/{id}")]
+        public IActionResult GetByIdEventTrue(Guid id)
+        {
+            try
+            {
+                return Ok(_comentarioEventoRepository.ListarPorIdEventoTrue(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
